@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GateFlux Deployment &amp; Configuration Guide</title>
+    <style>
+        :root {
+            --primary: #1e40af;
+            --primary-light: #3b82f6;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text: #1e293b;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --code-bg: #1e293b;
+            --code-text: #e2e8f0;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: var(--primary);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 3px solid var(--primary);
+        }
+
+        h2 {
+            color: var(--primary);
+            font-size: 1.75rem;
+            margin: 2.5rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border);
+        }
+
+        h3 {
+            color: var(--text);
+            font-size: 1.35rem;
+            margin: 2rem 0 1rem;
+        }
+
+        h4 {
+            color: var(--text);
+            font-size: 1.1rem;
+            margin: 1.5rem 0 0.75rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        a {
+            color: var(--primary-light);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .toc {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.5rem 2rem;
+            margin: 2rem 0;
+        }
+
+        .toc h2 {
+            margin-top: 0;
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .toc ol {
+            margin-left: 1.5rem;
+        }
+
+        .toc li {
+            margin: 0.5rem 0;
+        }
+
+        .toc ul {
+            margin-left: 1.5rem;
+            list-style-type: disc;
+        }
+
+        pre {
+            background: var(--code-bg);
+            color: var(--code-text);
+            padding: 1rem 1.25rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1rem 0;
+            font-family: 'Fira Code', 'Consolas', monospace;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        code {
+            font-family: 'Fira Code', 'Consolas', monospace;
+            background: #e2e8f0;
+            padding: 0.15rem 0.4rem;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+
+        pre code {
+            background: none;
+            padding: 0;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+        }
+
+        .card h4 {
+            margin-top: 0;
+            color: var(--primary);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            background: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        th {
+            background: var(--primary);
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover {
+            background: #f1f5f9;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .badge-file {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        ul.checklist {
+            list-style: none;
+            margin: 1rem 0;
+        }
+
+        ul.checklist li {
+            padding: 0.5rem 0;
+            padding-left: 2rem;
+            position: relative;
+        }
+
+        ul.checklist li::before {
+            content: "☐";
+            position: absolute;
+            left: 0;
+            font-size: 1.2rem;
+        }
+
+        .warning {
+            background: #fef3c7;
+            border-left: 4px solid var(--warning);
+            padding: 1rem 1.25rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1rem 0;
+        }
+
+        .warning strong {
+            color: var(--warning);
+        }
+
+        .section {
+            margin-bottom: 3rem;
+        }
+
+        hr {
+            border: none;
+            border-top: 2px solid var(--border);
+            margin: 3rem 0;
+        }
+
+        .footer {
+            text-align: center;
+            color: var(--text-muted);
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+        }
+
+        @media print {
+            body {
+                padding: 0;
+            }
+            pre {
+                white-space: pre-wrap;
+                word-wrap: break-word;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+            h1 {
+                font-size: 1.75rem;
+            }
+            h2 {
+                font-size: 1.5rem;
+            }
+            pre {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>GateFlux Deployment &amp; Configuration Guide</h1>
+        <p>Complete guide for domain configuration, Hostinger deployment, and APK building.</p>
+
+        <div class="toc">
+            <h2>Table of Contents</h2>
+            <ol>
+                <li><a href="#domain-config">Domain Configuration</a>
+                    <ul>
+                        <li><a href="#api-laravel">API (Laravel)</a></li>
+                        <li><a href="#web-react">Web (React/Vite)</a></li>
+                        <li><a href="#mobile-apps">Mobile Apps</a></li>
+                    </ul>
+                </li>
+                <li><a href="#hostinger">Hostinger Shared Cloud Hosting Deployment</a>
+                    <ul>
+                        <li><a href="#prerequisites">Prerequisites</a></li>
+                        <li><a href="#api-deploy">API Deployment</a></li>
+                        <li><a href="#web-deploy">Web Deployment</a></li>
+                        <li><a href="#database">Database Setup</a></li>
+                    </ul>
+                </li>
+                <li><a href="#mobile-apk">Building Mobile APKs</a>
+                    <ul>
+                        <li><a href="#apk-prereq">Prerequisites</a></li>
+                        <li><a href="#resident-apk">Resident App APK</a></li>
+                        <li><a href="#security-apk">Security App APK</a></li>
+                        <li><a href="#signed-apk">Signed Release APK</a></li>
+                    </ul>
+                </li>
+                <li><a href="#ssl">SSL Configuration</a></li>
+                <li><a href="#env-ref">Environment Variables Reference</a></li>
+                <li><a href="#troubleshooting">Troubleshooting</a></li>
+            </ol>
+        </div>
+
+        <hr>
+
+        <!-- Section 1: Domain Configuration -->
+        <section id="domain-config" class="section">
+            <h2>1. Domain Configuration</h2>
+
+            <h3 id="api-laravel">1.1 API (Laravel)</h3>
+            
+            <div class="card">
+                <h4><span class="badge badge-file">api/.env</span></h4>
+                <p>Update these environment variables:</p>
+                <pre><code># Application URL
+APP_URL=https://api.yourdomain.com
+
+# Tenancy Configuration
+TENANCY_BASE_DOMAIN=yourdomain.com
+TENANCY_HEADER=X-Tenant
+TENANCY_ALLOW_HEADER=true
+
+# Session Domain (if using cookies)
+SESSION_DOMAIN=.yourdomain.com</code></pre>
+            </div>
+
+            <div class="card">
+                <h4><span class="badge badge-file">api/config/cors.php</span></h4>
+                <p>Update allowed origins:</p>
+                <pre><code>'allowed_origins' =&gt; [
+    'https://app.yourdomain.com',
+    'https://yourdomain.com',
+    'https://*.yourdomain.com',
+],</code></pre>
+            </div>
+
+            <div class="card">
+                <h4><span class="badge badge-file">api/config/sanctum.php</span></h4>
+                <p>Update stateful domains:</p>
+                <pre><code>'stateful' =&gt; explode(',', env('SANCTUM_STATEFUL_DOMAINS', sprintf(
+    '%s%s',
+    'localhost,localhost:3000,localhost:5173,127.0.0.1,127.0.0.1:8000,::1',
+    ',app.yourdomain.com,api.yourdomain.com'
+))),</code></pre>
+            </div>
+
+            <h3 id="web-react">1.2 Web (React/Vite)</h3>
+
+            <div class="card">
+                <h4><span class="badge badge-file">web/.env.production</span></h4>
+                <pre><code>VITE_API_BASE_URL=https://api.yourdomain.com/api/v1
+VITE_TENANCY_HEADER=X-Tenant
+VITE_TENANCY_VALUE=</code></pre>
+            </div>
+
+            <h3 id="mobile-apps">1.3 Mobile Apps</h3>
+
+            <div class="card">
+                <h4><span class="badge badge-file">mobile/packages/shared/src/api/client.js</span></h4>
+                <p>Update the production API URL:</p>
+                <pre><code>const API_BASE_URL = __DEV__ 
+  ? 'http://10.0.2.2:8000/api/v1'      // Android emulator localhost
+  : 'https://api.yourdomain.com/api/v1'; // Production</code></pre>
+                <p><strong>For iOS Simulator:</strong> Use <code>http://localhost:8000/api/v1</code> instead of <code>10.0.2.2</code></p>
+            </div>
+        </section>
+
+        <hr>
+
+        <!-- Section 2: Hostinger Deployment -->
+        <section id="hostinger" class="section">
+            <h2>2. Hostinger Shared Cloud Hosting Deployment</h2>
+
+            <h3 id="prerequisites">2.1 Prerequisites</h3>
+            <ul>
+                <li>Hostinger Cloud Hosting plan (Business or higher recommended)</li>
+                <li>SSH access enabled</li>
+                <li>PHP 8.2+ with required extensions</li>
+                <li>MySQL 8.0+ database</li>
+                <li>Composer installed</li>
+                <li>Node.js 18+ (for building web app locally)</li>
+            </ul>
+
+            <h3 id="api-deploy">2.2 API Deployment</h3>
+
+            <h4>Step 1: Create Subdomain</h4>
+            <ol>
+                <li>Log in to Hostinger hPanel</li>
+                <li>Go to <strong>Domains</strong> → <strong>Subdomains</strong></li>
+                <li>Create <code>api.yourdomain.com</code></li>
+                <li>Point it to <code>public_html/api/public</code></li>
+            </ol>
+
+            <h4>Step 2: Upload Files (Using Git)</h4>
+            <pre><code># SSH into your server
+ssh u123456789@yourdomain.com
+
+# Navigate to public_html
+cd public_html
+
+# Clone repository
+git clone https://github.com/yourusername/gateflux.git api
+
+# Or pull latest changes
+cd api &amp;&amp; git pull origin main</code></pre>
+
+            <h4>Step 3: Configure Environment</h4>
+            <pre><code># SSH into server
+cd public_html/api
+
+# Copy environment file
+cp .env.example .env
+
+# Edit environment file
+nano .env</code></pre>
+
+            <div class="card">
+                <h4>Production .env Settings</h4>
+                <pre><code>APP_NAME=GateFlux
+APP_ENV=production
+APP_KEY=base64:YOUR_APP_KEY_HERE
+APP_DEBUG=false
+APP_URL=https://api.yourdomain.com
+
+DB_CONNECTION=mysql
+DB_HOST=localhost
+DB_PORT=3306
+DB_DATABASE=your_database_name
+DB_USERNAME=your_database_user
+DB_PASSWORD=your_database_password
+
+TENANCY_BASE_DOMAIN=yourdomain.com
+TENANCY_HEADER=X-Tenant
+TENANCY_ALLOW_HEADER=true
+
+CACHE_DRIVER=file
+QUEUE_CONNECTION=database
+SESSION_DRIVER=database
+
+MAIL_MAILER=smtp
+MAIL_HOST=smtp.hostinger.com
+MAIL_PORT=465
+MAIL_USERNAME=your_email@yourdomain.com
+MAIL_PASSWORD=your_email_password
+MAIL_ENCRYPTION=ssl
+MAIL_FROM_ADDRESS=noreply@yourdomain.com
+MAIL_FROM_NAME="GateFlux"</code></pre>
+            </div>
+
+            <h4>Step 4: Install Dependencies &amp; Setup</h4>
+            <pre><code># Install PHP dependencies
+composer install --optimize-autoloader --no-dev
+
+# Generate application key (if not set)
+php artisan key:generate
+
+# Run migrations
+php artisan migrate --force
+
+# Seed database (if needed)
+php artisan db:seed --force
+
+# Optimize for production
+php artisan config:cache
+php artisan route:cache
+php artisan view:cache
+
+# Set permissions
+chmod -R 775 storage bootstrap/cache</code></pre>
+
+            <h4>Step 5: Configure .htaccess</h4>
+            <div class="card">
+                <h4><span class="badge badge-file">public_html/api/.htaccess</span></h4>
+                <pre><code>&lt;IfModule mod_rewrite.c&gt;
+    RewriteEngine On
+    RewriteRule ^(.*)$ public/$1 [L]
+&lt;/IfModule&gt;</code></pre>
+            </div>
+
+            <h3 id="web-deploy">2.3 Web Deployment</h3>
+
+            <h4>Step 1: Build Locally</h4>
+            <pre><code>cd web
+
+# Install dependencies
+npm install
+
+# Create production environment
+cp .env.example .env.production
+# Edit .env.production with production API URL
+
+# Build for production
+npm run build</code></pre>
+
+            <h4>Step 2: Upload Built Files</h4>
+            <ol>
+                <li>Create subdomain <code>app.yourdomain.com</code> pointing to <code>public_html/app</code></li>
+                <li>Upload contents of <code>web/dist/</code> to <code>public_html/app/</code></li>
+            </ol>
+
+            <h4>Step 3: Configure .htaccess for SPA</h4>
+            <div class="card">
+                <h4><span class="badge badge-file">public_html/app/.htaccess</span></h4>
+                <pre><code>&lt;IfModule mod_rewrite.c&gt;
+    RewriteEngine On
+    RewriteBase /
+    
+    # Handle Authorization Header
+    RewriteCond %{HTTP:Authorization} ^(.*)
+    RewriteRule .* - [e=HTTP_AUTHORIZATION:%1]
+    
+    # Redirect non-existing files to index.html
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^ index.html [L]
+&lt;/IfModule&gt;
+
+# Enable GZIP compression
+&lt;IfModule mod_deflate.c&gt;
+    AddOutputFilterByType DEFLATE text/html text/css application/javascript application/json
+&lt;/IfModule&gt;
+
+# Cache static assets
+&lt;IfModule mod_expires.c&gt;
+    ExpiresActive On
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/jpg "access plus 1 year"
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+&lt;/IfModule&gt;</code></pre>
+            </div>
+
+            <h3 id="database">2.4 Database Setup</h3>
+            <ol>
+                <li>Go to <strong>Databases</strong> → <strong>MySQL Databases</strong> in hPanel</li>
+                <li>Create new database: <code>gateflux_prod</code></li>
+                <li>Create database user with strong password</li>
+                <li>Grant all privileges to the user</li>
+                <li>Note down credentials for <code>.env</code></li>
+            </ol>
+
+            <h4>Import Existing Data</h4>
+            <pre><code># Export from local
+mysqldump -u root -p gateflux &gt; gateflux_backup.sql
+
+# Import on Hostinger (via SSH or phpMyAdmin)
+mysql -u your_db_user -p your_database &lt; gateflux_backup.sql</code></pre>
+        </section>
+
+        <hr>
+
+        <!-- Section 3: Building Mobile APKs -->
+        <section id="mobile-apk" class="section">
+            <h2>3. Building Mobile APKs</h2>
+
+            <h3 id="apk-prereq">3.1 Prerequisites</h3>
+            <ul>
+                <li>Node.js 18+</li>
+                <li>Java Development Kit (JDK) 17</li>
+                <li>Android Studio with SDK</li>
+                <li>Android SDK Platform 34 (or target version)</li>
+                <li>Android SDK Build-Tools 34.0.0</li>
+            </ul>
+
+            <h4>Environment Variables (Windows PowerShell)</h4>
+            <pre><code>$env:ANDROID_HOME = "C:\Users\YourUser\AppData\Local\Android\Sdk"
+$env:JAVA_HOME = "C:\Program Files\Java\jdk-17"
+$env:Path += ";$env:ANDROID_HOME\platform-tools;$env:ANDROID_HOME\tools"</code></pre>
+
+            <h4>Environment Variables (macOS/Linux)</h4>
+            <pre><code>export ANDROID_HOME=$HOME/Android/Sdk
+export JAVA_HOME=/usr/lib/jvm/java-17-openjdk
+export PATH=$PATH:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools</code></pre>
+
+            <h3 id="resident-apk">3.2 Resident App APK</h3>
+            <pre><code># Navigate to mobile directory
+cd mobile
+
+# Install dependencies
+yarn install
+
+# Navigate to resident app
+cd apps/resident/android
+
+# Clean previous builds
+./gradlew clean
+
+# Build debug APK
+./gradlew assembleDebug
+
+# Build release APK
+./gradlew assembleRelease</code></pre>
+
+            <div class="card">
+                <h4>APK Locations</h4>
+                <ul>
+                    <li><strong>Debug:</strong> <code>apps/resident/android/app/build/outputs/apk/debug/app-debug.apk</code></li>
+                    <li><strong>Release:</strong> <code>apps/resident/android/app/build/outputs/apk/release/app-release.apk</code></li>
+                </ul>
+            </div>
+
+            <h3 id="security-apk">3.3 Security App APK</h3>
+            <pre><code># Navigate to security app
+cd mobile/apps/security/android
+
+# Clean and build
+./gradlew clean
+./gradlew assembleDebug
+./gradlew assembleRelease</code></pre>
+
+            <h3 id="signed-apk">3.4 Signed Release APK</h3>
+            <p>For Play Store distribution, you need a signed APK.</p>
+
+            <h4>Step 1: Generate Keystore</h4>
+            <pre><code>keytool -genkeypair -v -storetype PKCS12 -keystore gateflux-release.keystore -alias gateflux-key -keyalg RSA -keysize 2048 -validity 10000</code></pre>
+            
+            <div class="warning">
+                <strong>⚠️ Important:</strong> Store the keystore file securely! You cannot recover it if lost.
+            </div>
+
+            <h4>Step 2: Configure Signing</h4>
+            <div class="card">
+                <h4><span class="badge badge-file">apps/resident/android/gradle.properties</span></h4>
+                <pre><code>MYAPP_RELEASE_STORE_FILE=gateflux-release.keystore
+MYAPP_RELEASE_KEY_ALIAS=gateflux-key
+MYAPP_RELEASE_STORE_PASSWORD=your_store_password
+MYAPP_RELEASE_KEY_PASSWORD=your_key_password</code></pre>
+            </div>
+
+            <div class="card">
+                <h4><span class="badge badge-file">apps/resident/android/app/build.gradle</span></h4>
+                <p>Update the <code>signingConfigs</code> block:</p>
+                <pre><code>signingConfigs {
+    debug {
+        storeFile file('debug.keystore')
+        storePassword 'android'
+        keyAlias 'androiddebugkey'
+        keyPassword 'android'
+    }
+    release {
+        if (project.hasProperty('MYAPP_RELEASE_STORE_FILE')) {
+            storeFile file(MYAPP_RELEASE_STORE_FILE)
+            storePassword MYAPP_RELEASE_STORE_PASSWORD
+            keyAlias MYAPP_RELEASE_KEY_ALIAS
+            keyPassword MYAPP_RELEASE_KEY_PASSWORD
+        }
+    }
+}
+buildTypes {
+    release {
+        signingConfig signingConfigs.release
+        minifyEnabled true
+        shrinkResources true
+        proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
+    }
+}</code></pre>
+            </div>
+
+            <h4>Step 3: Build Signed APK</h4>
+            <pre><code>cd apps/resident/android
+./gradlew assembleRelease</code></pre>
+
+            <h4>Step 4: Build AAB for Play Store</h4>
+            <pre><code>./gradlew bundleRelease</code></pre>
+            <p><strong>AAB Location:</strong> <code>app/build/outputs/bundle/release/app-release.aab</code></p>
+
+            <h4>Update App Version</h4>
+            <p>Before each release, update version in <code>build.gradle</code>:</p>
+            <pre><code>defaultConfig {
+    applicationId "com.gatefluxresident"
+    minSdkVersion rootProject.ext.minSdkVersion
+    targetSdkVersion rootProject.ext.targetSdkVersion
+    versionCode 2          // Increment for each release
+    versionName "1.1.0"    // Semantic version
+}</code></pre>
+        </section>
+
+        <hr>
+
+        <!-- Section 4: SSL Configuration -->
+        <section id="ssl" class="section">
+            <h2>4. SSL Configuration</h2>
+            <p>Hostinger provides free SSL via Let's Encrypt.</p>
+            <ol>
+                <li>Go to <strong>SSL</strong> in hPanel</li>
+                <li>Select your domains:
+                    <ul>
+                        <li><code>yourdomain.com</code></li>
+                        <li><code>api.yourdomain.com</code></li>
+                        <li><code>app.yourdomain.com</code></li>
+                    </ul>
+                </li>
+                <li>Click <strong>Install SSL</strong></li>
+                <li>Enable <strong>Force HTTPS</strong></li>
+            </ol>
+
+            <h4>Force HTTPS in .htaccess</h4>
+            <pre><code>RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]</code></pre>
+        </section>
+
+        <hr>
+
+        <!-- Section 5: Environment Variables Reference -->
+        <section id="env-ref" class="section">
+            <h2>5. Environment Variables Reference</h2>
+
+            <h3>API (.env)</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Variable</th>
+                        <th>Description</th>
+                        <th>Example</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>APP_URL</code></td>
+                        <td>Full API URL</td>
+                        <td><code>https://api.yourdomain.com</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>APP_ENV</code></td>
+                        <td>Environment</td>
+                        <td><code>production</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>APP_DEBUG</code></td>
+                        <td>Debug mode</td>
+                        <td><code>false</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>DB_HOST</code></td>
+                        <td>Database host</td>
+                        <td><code>localhost</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>DB_DATABASE</code></td>
+                        <td>Database name</td>
+                        <td><code>gateflux_prod</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>DB_USERNAME</code></td>
+                        <td>Database user</td>
+                        <td><code>gateflux_user</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>DB_PASSWORD</code></td>
+                        <td>Database password</td>
+                        <td><code>secure_password</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>TENANCY_BASE_DOMAIN</code></td>
+                        <td>Base domain</td>
+                        <td><code>yourdomain.com</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>MAIL_HOST</code></td>
+                        <td>SMTP host</td>
+                        <td><code>smtp.hostinger.com</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>MAIL_PORT</code></td>
+                        <td>SMTP port</td>
+                        <td><code>465</code></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Web (.env.production)</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Variable</th>
+                        <th>Description</th>
+                        <th>Example</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>VITE_API_BASE_URL</code></td>
+                        <td>API endpoint</td>
+                        <td><code>https://api.yourdomain.com/api/v1</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>VITE_TENANCY_HEADER</code></td>
+                        <td>Tenant header name</td>
+                        <td><code>X-Tenant</code></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Mobile (client.js)</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Variable</th>
+                        <th>Description</th>
+                        <th>Example</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>API_BASE_URL</code></td>
+                        <td>Production API</td>
+                        <td><code>https://api.yourdomain.com/api/v1</code></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <hr>
+
+        <!-- Section 6: Troubleshooting -->
+        <section id="troubleshooting" class="section">
+            <h2>6. Troubleshooting</h2>
+
+            <h3>API Issues</h3>
+
+            <h4>500 Internal Server Error</h4>
+            <pre><code># Check Laravel logs
+tail -f storage/logs/laravel.log
+
+# Fix permissions
+chmod -R 775 storage bootstrap/cache
+chown -R www-data:www-data storage bootstrap/cache</code></pre>
+
+            <h4>CORS Errors</h4>
+            <ul>
+                <li>Check <code>config/cors.php</code> allowed origins</li>
+                <li>Verify <code>api/.htaccess</code> has correct headers</li>
+                <li>Clear config cache: <code>php artisan config:clear</code></li>
+            </ul>
+
+            <h4>Database Connection Failed</h4>
+            <ul>
+                <li>Verify credentials in <code>.env</code></li>
+                <li>Check if database exists</li>
+                <li>Ensure MySQL user has proper privileges</li>
+            </ul>
+
+            <h3>Web Issues</h3>
+
+            <h4>Blank Page</h4>
+            <ul>
+                <li>Check browser console for errors</li>
+                <li>Verify API URL in <code>.env.production</code></li>
+                <li>Check <code>.htaccess</code> SPA routing</li>
+            </ul>
+
+            <h3>Mobile Build Issues</h3>
+
+            <h4>Gradle Build Failed</h4>
+            <pre><code># Clean and rebuild
+cd android
+./gradlew clean
+./gradlew assembleDebug --stacktrace</code></pre>
+
+            <h4>SDK Not Found</h4>
+            <ul>
+                <li>Verify <code>ANDROID_HOME</code> environment variable</li>
+                <li>Install required SDK platforms via Android Studio</li>
+            </ul>
+
+            <h4>Metro Bundler Issues</h4>
+            <pre><code># Reset Metro cache
+npx react-native start --reset-cache</code></pre>
+        </section>
+
+        <hr>
+
+        <!-- Quick Reference Commands -->
+        <section class="section">
+            <h2>Quick Reference Commands</h2>
+
+            <h3>Deploy API Update</h3>
+            <pre><code>cd public_html/api
+git pull origin main
+composer install --optimize-autoloader --no-dev
+php artisan migrate --force
+php artisan config:cache
+php artisan route:cache
+php artisan view:cache</code></pre>
+
+            <h3>Deploy Web Update</h3>
+            <pre><code># Build locally
+cd web
+npm run build
+
+# Upload dist/ contents to server</code></pre>
+
+            <h3>Build Both APKs</h3>
+            <pre><code>cd mobile
+
+# Resident App
+cd apps/resident/android &amp;&amp; ./gradlew assembleRelease &amp;&amp; cd ../../..
+
+# Security App
+cd apps/security/android &amp;&amp; ./gradlew assembleRelease &amp;&amp; cd ../../..</code></pre>
+        </section>
+
+        <hr>
+
+        <!-- Checklist -->
+        <section class="section">
+            <h2>Checklist Before Going Live</h2>
+            <ul class="checklist">
+                <li>Update all domain references in code</li>
+                <li>Set <code>APP_DEBUG=false</code> in production</li>
+                <li>Configure SSL certificates</li>
+                <li>Set up database backups</li>
+                <li>Configure email (SMTP)</li>
+                <li>Test all API endpoints</li>
+                <li>Test web app in production</li>
+                <li>Build and test both mobile APKs</li>
+                <li>Set up error monitoring (optional)</li>
+                <li>Configure queue workers (if using)</li>
+                <li>Set up cron jobs for scheduled tasks</li>
+            </ul>
+        </section>
+
+        <div class="footer">
+            <p><strong>GateFlux Deployment Guide</strong></p>
+            <p>Last Updated: February 2026</p>
+        </div>
+    </div>
+</body>
+</html>

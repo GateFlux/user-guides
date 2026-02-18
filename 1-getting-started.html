@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Getting Started - GateFlux Help Center</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <button class="mobile-menu-btn" onclick="toggleSidebar()">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+    </button>
+
+    <div class="doc-container">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="sidebar-logo">
+                    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="40" height="40" rx="8" fill="url(#gradient)"/>
+                        <path d="M12 14h16M12 20h16M12 26h10" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                        <defs>
+                            <linearGradient id="gradient" x1="0" y1="0" x2="40" y2="40">
+                                <stop stop-color="#2563eb"/>
+                                <stop offset="1" stop-color="#06b6d4"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <span>GateFlux</span>
+                </a>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <div class="nav-section-title">Getting Started</div>
+                    <a href="1-getting-started.html" class="nav-link active">Quick Start Guide</a>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">User Guides</div>
+                    <a href="resident-guide.html" class="nav-link">Resident Guide</a>
+                    <a href="security-guard-guide.html" class="nav-link">Security Guard Guide</a>
+                    <a href="admin-guide.html" class="nav-link">Admin Guide</a>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">Help</div>
+                    <a href="6-troubleshooting.html" class="nav-link">Troubleshooting</a>
+                    <a href="7-faq.html" class="nav-link">FAQ</a>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">Technical Docs</div>
+                    <a href="4-api-integration.html" class="nav-link">API Reference</a>
+                    <a href="5-configuration.html" class="nav-link">Configuration</a>
+                    <a href="Deployment-Guide.html" class="nav-link">Deployment Guide</a>
+                </div>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <div class="breadcrumb">
+                <a href="index.html">Help Center</a>
+                <span>›</span>
+                <span>Getting Started</span>
+            </div>
+
+            <div class="intro-box">
+                <h1>Quick Start Guide</h1>
+                <p>Welcome to GateFlux! This guide will help you get started with the app based on who you are.</p>
+            </div>
+
+            <!-- Section: Choose Your Role -->
+            <h2>Who are you?</h2>
+            <p>Select your role to see the right getting started steps:</p>
+
+            <div class="feature-grid">
+                <a href="#resident-start" class="feature-card" style="text-decoration: none; color: inherit;">
+                    <h4>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                        </svg>
+                        I'm a Resident
+                    </h4>
+                    <p>Living in the society and want to manage visitors, view notices, and access community features.</p>
+                </a>
+                <a href="#security-start" class="feature-card" style="text-decoration: none; color: inherit;">
+                    <h4>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                        </svg>
+                        I'm a Security Guard
+                    </h4>
+                    <p>Working at the society gate and need to check visitors in and out.</p>
+                </a>
+                <a href="#admin-start" class="feature-card" style="text-decoration: none; color: inherit;">
+                    <h4>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="3"></circle>
+                            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                        </svg>
+                        I'm an Admin
+                    </h4>
+                    <p>Managing the society, residents, security staff, and settings.</p>
+                </a>
+            </div>
+
+            <!-- Resident Getting Started -->
+            <h2 id="resident-start">For Residents</h2>
+
+            <h3>Step 1: Download the App or Access Web Portal</h3>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <div class="step-title">Get the GateFlux app</div>
+                        <div class="step-description">
+                            Download GateFlux from the <strong>App Store</strong> (iPhone) or <strong>Google Play Store</strong> (Android).
+                            Search for "GateFlux" or ask your society admin for a direct link.
+                            <br><br>
+                            Alternatively, access the <strong>web portal</strong> at your society's GateFlux URL.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Step 2: Create Account or Log In</h3>
+            
+            <div class="info-box info">
+                <div class="info-box-title">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" y1="16" x2="12" y2="12"></line>
+                        <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                    </svg>
+                    Self-Registration Available
+                </div>
+                <p>If your society has enabled self-registration, you can create your own account by clicking <strong>"Sign up"</strong> on the login page and selecting your society from the dropdown.</p>
+            </div>
+
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <div class="step-title">Open the app and enter your phone number</div>
+                        <div class="step-description">Use the phone number registered with your society.</div>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <div class="step-title">Enter the OTP</div>
+                        <div class="step-description">You'll receive a one-time password via SMS. Enter it to verify your number.</div>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <div class="step-title">Select your flat</div>
+                        <div class="step-description">If you own or rent multiple flats, choose the one you want to manage.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-box success">
+                <div class="info-box-title">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                    </svg>
+                    You're in!
+                </div>
+                <p>Once logged in, you'll see your dashboard with visitor activity, notices, and quick actions.</p>
+            </div>
+
+            <!-- Mock Screen: Resident Dashboard Preview -->
+            <div class="screen-gallery">
+                <div class="screen-item">
+                    <div class="phone-mockup">
+                        <div class="phone-screen">
+                            <div class="mock-header">
+                                <h3>Welcome, Raj!</h3>
+                            </div>
+                            <div class="mock-content">
+                                <div class="mock-stats">
+                                    <div class="mock-stat">
+                                        <div class="mock-stat-value">2</div>
+                                        <div class="mock-stat-label">Expected Today</div>
+                                    </div>
+                                    <div class="mock-stat">
+                                        <div class="mock-stat-value" style="color: var(--success-color);">1</div>
+                                        <div class="mock-stat-label">Inside Now</div>
+                                    </div>
+                                </div>
+                                <div class="mock-btn" style="display: flex; align-items: center; justify-content: center; gap: 8px;">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+                                    </svg>
+                                    Pre-Approve Visitor
+                                </div>
+                                <div style="font-weight: 600; font-size: 13px; margin: 16px 0 10px; color: var(--text-color);">Recent Activity</div>
+                                <div class="mock-list-item">
+                                    <div class="mock-avatar" style="width: 36px; height: 36px; font-size: 12px;">A</div>
+                                    <div class="mock-list-content">
+                                        <div class="mock-list-title" style="font-size: 12px;">Amazon Delivery</div>
+                                        <div class="mock-list-subtitle" style="font-size: 10px;">Checked in 5 min ago</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mock-bottom-nav">
+                                <div class="mock-nav-item active">
+                                    <svg class="mock-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                                    </svg>
+                                    Home
+                                </div>
+                                <div class="mock-nav-item">
+                                    <svg class="mock-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
+                                    </svg>
+                                    Visitors
+                                </div>
+                                <div class="mock-nav-item">
+                                    <svg class="mock-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+                                    </svg>
+                                    Notices
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="screen-caption">Resident Home Screen</div>
+                </div>
+            </div>
+
+            <h3>Step 3: Try These First</h3>
+            <ul>
+                <li><strong>Pre-approve a visitor</strong> - Let someone in before they arrive. <a href="resident-guide.html#pre-approving-a-visitor">Learn how</a></li>
+                <li><strong>Check recent visitors</strong> - See who's visited your flat recently</li>
+                <li><strong>Read notices</strong> - Stay updated on society news</li>
+            </ul>
+
+            <div class="info-box info">
+                <div class="info-box-title">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" y1="16" x2="12" y2="12"></line>
+                        <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                    </svg>
+                    Want the full guide?
+                </div>
+                <p>See the complete <a href="resident-guide.html">Resident Guide</a> for all features.</p>
+            </div>
+
+            <!-- Security Guard Getting Started -->
+            <h2 id="security-start">For Security Guards</h2>
+
+            <h3>Step 1: Get Your Login</h3>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <div class="step-title">Your admin will create your account</div>
+                        <div class="step-description">The society admin will add you to the system and give you login credentials.</div>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <div class="step-title">Download the GateFlux Guard app</div>
+                        <div class="step-description">Get it from the App Store or Google Play Store (search "GateFlux Guard").</div>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <div class="step-title">Log in with your credentials</div>
+                        <div class="step-description">Enter your username/phone and password provided by the admin.</div>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Step 2: Know Your Dashboard</h3>
+            <p>Your dashboard shows:</p>
+            <ul>
+                <li><strong>Expected Visitors</strong> - Pre-approved visitors for today</li>
+                <li><strong>Currently Inside</strong> - Visitors who haven't checked out yet</li>
+                <li><strong>Scan QR</strong> - Quick button to scan visitor QR codes</li>
+                <li><strong>Walk-in Entry</strong> - Register unexpected visitors</li>
+            </ul>
+
+            <!-- Mock Screen: Guard Quick Preview -->
+            <div class="screen-gallery">
+                <div class="screen-item">
+                    <div class="phone-mockup">
+                        <div class="phone-screen">
+                            <div class="mock-header">
+                                <h3>Gate 1</h3>
+                            </div>
+                            <div class="mock-content">
+                                <div class="mock-stats">
+                                    <div class="mock-stat">
+                                        <div class="mock-stat-value">8</div>
+                                        <div class="mock-stat-label">Expected</div>
+                                    </div>
+                                    <div class="mock-stat">
+                                        <div class="mock-stat-value" style="color: var(--success-color);">3</div>
+                                        <div class="mock-stat-label">Inside</div>
+                                    </div>
+                                </div>
+                                <div class="mock-btn mock-btn-success" style="display: flex; align-items: center; justify-content: center; gap: 8px; padding: 16px; font-size: 16px;">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/>
+                                    </svg>
+                                    Scan QR Code
+                                </div>
+                                <div class="mock-btn mock-btn-secondary" style="display: flex; align-items: center; justify-content: center; gap: 8px;">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/>
+                                    </svg>
+                                    Walk-in Entry
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="screen-caption">Security Guard Dashboard</div>
+                </div>
+            </div>
+
+            <h3>Step 3: Try Your First Check-in</h3>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <div class="step-title">When a visitor arrives, tap "Scan QR"</div>
+                        <div class="step-description">Point your camera at the visitor's QR code (from their pre-approval).</div>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <div class="step-title">Verify the details</div>
+                        <div class="step-description">The screen shows the visitor name, flat number, and resident name. Confirm it matches.</div>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <div class="step-title">Tap "Check In"</div>
+                        <div class="step-description">The visitor is now logged as inside the society.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-box info">
+                <div class="info-box-title">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" y1="16" x2="12" y2="12"></line>
+                        <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                    </svg>
+                    No QR code?
+                </div>
+                <p>If the visitor doesn't have a QR code, use the search function or register them as a walk-in. 
+                   See the <a href="security-guard-guide.html">Security Guard Guide</a> for all scenarios.</p>
+            </div>
+
+            <!-- Admin Getting Started -->
+            <h2 id="admin-start">For Admins</h2>
+
+            <h3>Step 1: Access the Admin Panel</h3>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <div class="step-title">Open the GateFlux web dashboard</div>
+                        <div class="step-description">Go to your society's GateFlux URL (e.g., yourSociety.gateflux.co) in a web browser.</div>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <div class="step-title">Log in with your admin credentials</div>
+                        <div class="step-description">Your super admin or GateFlux support will have provided these.</div>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Step 2: Essential Setup Tasks</h3>
+            <p>As a new admin, here's what you should do first:</p>
+
+            <ol>
+                <li><strong>Add residents</strong> - Import or manually add your society's residents</li>
+                <li><strong>Add security staff</strong> - Create accounts for your guards</li>
+                <li><strong>Set up service providers</strong> - Add common providers (maids, cooks, drivers)</li>
+                <li><strong>Post a welcome notice</strong> - Let residents know GateFlux is live</li>
+            </ol>
+
+            <div class="info-box warning">
+                <div class="info-box-title">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                        <line x1="12" y1="9" x2="12" y2="13"></line>
+                        <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                    </svg>
+                    Important
+                </div>
+                <p>Make sure residents have the correct phone numbers in the system - that's how they log in!</p>
+            </div>
+
+            <h3>Enable Self-Registration</h3>
+            <p>Allow residents to register themselves instead of manually adding each one:</p>
+
+            <ol>
+                <li><strong>Request from Platform Admin</strong> - Ask your GateFlux platform admin to enable "Allow Self-Signup" for your society</li>
+                <li><strong>Notify residents</strong> - Once enabled, residents can click "Sign up" on your login page</li>
+                <li><strong>Review new registrations</strong> - New self-registered users appear in your resident management area for approval</li>
+            </ol>
+
+            <div class="info-box info">
+                <div class="info-box-title">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" y1="16" x2="12" y2="12"></line>
+                        <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                    </svg>
+                    Tip
+                </div>
+                <p>Self-registration speeds up onboarding but ensure you verify new registrations against your actual resident list.</p>
+            </div>
+
+            <h3>Step 3: Explore the Dashboard</h3>
+            <p>Your admin dashboard gives you:</p>
+            <ul>
+                <li><strong>Today's overview</strong> - Visitor count, active residents, pending approvals</li>
+                <li><strong>Manage Residents</strong> - Add, edit, or remove resident accounts</li>
+                <li><strong>Manage Security</strong> - Control guard accounts and shifts</li>
+                <li><strong>Notices</strong> - Post announcements to all residents</li>
+                <li><strong>Reports</strong> - View visitor analytics and activity logs</li>
+            </ul>
+
+            <div class="info-box info">
+                <div class="info-box-title">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" y1="16" x2="12" y2="12"></line>
+                        <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                    </svg>
+                    Full admin documentation
+                </div>
+                <p>See the complete <a href="admin-guide.html">Admin Guide</a> for all features and settings.</p>
+            </div>
+
+            <!-- Troubleshooting -->
+            <h2>Common Issues</h2>
+
+            <h4>I didn't receive an OTP</h4>
+            <ul>
+                <li>Check that you entered the correct phone number</li>
+                <li>Make sure your phone has network signal</li>
+                <li>Wait 60 seconds and tap "Resend OTP"</li>
+                <li>Contact your society admin if the problem persists</li>
+            </ul>
+
+            <h4>I can't find my society</h4>
+            <ul>
+                <li>Your society admin needs to add you to the system first</li>
+                <li>Double-check that you're using the registered phone number</li>
+                <li>Contact your society admin to verify your registration</li>
+            </ul>
+
+            <h4>The app is not loading</h4>
+            <ul>
+                <li>Check your internet connection (Wi-Fi or mobile data)</li>
+                <li>Force close and reopen the app</li>
+                <li>Update to the latest version from the app store</li>
+            </ul>
+
+            <div class="doc-footer">
+                <div></div>
+                <a href="resident-guide.html" class="next">
+                    <span>Next</span>
+                    <span>Resident Guide →</span>
+                </a>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('open');
+        }
+    </script>
+</body>
+</html>

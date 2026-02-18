@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - GateFlux Help Center</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        .faq-section {
+            margin-bottom: 40px;
+        }
+        .faq-item {
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            margin-bottom: 12px;
+            overflow: hidden;
+        }
+        .faq-question {
+            padding: 16px 20px;
+            background: var(--bg-secondary);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+        .faq-question:hover {
+            background: var(--bg-tertiary);
+        }
+        .faq-question svg {
+            transition: transform 0.3s;
+            flex-shrink: 0;
+            margin-left: 12px;
+        }
+        .faq-item.open .faq-question svg {
+            transform: rotate(180deg);
+        }
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s, padding 0.3s;
+        }
+        .faq-item.open .faq-answer {
+            padding: 20px;
+            max-height: 1000px;
+        }
+        .faq-answer p:last-child {
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <button class="mobile-menu-btn" onclick="toggleSidebar()">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+    </button>
+
+    <div class="doc-container">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="sidebar-logo">
+                    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="40" height="40" rx="8" fill="url(#gradient)"/>
+                        <path d="M12 14h16M12 20h16M12 26h10" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                        <defs>
+                            <linearGradient id="gradient" x1="0" y1="0" x2="40" y2="40">
+                                <stop stop-color="#2563eb"/>
+                                <stop offset="1" stop-color="#06b6d4"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <span>GateFlux</span>
+                </a>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <div class="nav-section-title">Getting Started</div>
+                    <a href="1-getting-started.html" class="nav-link">Quick Start Guide</a>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">User Guides</div>
+                    <a href="resident-guide.html" class="nav-link">Resident Guide</a>
+                    <a href="security-guard-guide.html" class="nav-link">Security Guard Guide</a>
+                    <a href="admin-guide.html" class="nav-link">Admin Guide</a>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">Help</div>
+                    <a href="6-troubleshooting.html" class="nav-link">Troubleshooting</a>
+                    <a href="7-faq.html" class="nav-link active">FAQ</a>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">Technical Docs</div>
+                    <a href="4-api-integration.html" class="nav-link">API Reference</a>
+                    <a href="5-configuration.html" class="nav-link">Configuration</a>
+                    <a href="Deployment-Guide.html" class="nav-link">Deployment Guide</a>
+                </div>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <div class="breadcrumb">
+                <a href="index.html">Help Center</a>
+                <span>›</span>
+                <span>FAQ</span>
+            </div>
+
+            <div class="intro-box">
+                <h1>Frequently Asked Questions</h1>
+                <p>Quick answers to common questions about using GateFlux.</p>
+            </div>
+
+            <!-- Residents FAQ -->
+            <h2>For Residents</h2>
+            <div class="faq-section">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        How do I pre-approve a visitor?
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+                    <div class="faq-answer">
+                        <ol>
+                            <li>Open the GateFlux app and tap <strong>Add Visitor</strong></li>
+                            <li>Enter the visitor's name and phone number</li>
+                            <li>Choose a visit date and expected time</li>
+                            <li>Tap <strong>Create</strong> to generate a QR code</li>
+                        </ol>
+                        <p>The visitor will receive an SMS with entry instructions. <a href="resident-guide.html#pre-approving-a-visitor">Learn more</a></p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Can I let in a delivery without pre-approving?
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! When the delivery person arrives, the security guard will send you a notification requesting approval. You can approve or deny directly from the notification or the app.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        How do I set up recurring access for my maid or cook?
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+                    <div class="faq-answer">
+                        <ol>
+                            <li>Go to <strong>Visitors</strong> → <strong>Recurring</strong></li>
+                            <li>Tap <strong>Add Recurring Visitor</strong></li>
+                            <li>Enter the provider's details</li>
+                            <li>Set the schedule (e.g., Mon-Sat, 8 AM - 10 AM)</li>
+                            <li>The provider can now enter during those times without daily approval</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        I'm not receiving notifications. What should I do?
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+                    <div class="faq-answer">
+                        <ol>
+                            <li>Check that notifications are enabled for GateFlux in your phone settings</li>
+                            <li>Make sure you're logged in to the app</li>
+                            <li>Check if Do Not Disturb mode is off</li>
+                            <li>Try logging out and logging back in</li>
+                        </ol>
+                        <p>If the problem continues, contact your society admin.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Can I manage visitors for multiple flats?
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! If you're registered for multiple flats (e.g., you own A-101 and B-202), you can switch between them using the flat selector at the top of the app. Each flat has its own visitor list and settings.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        How do I cancel a pre-approved visitor?
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+                    <div class="faq-answer">
+                        <ol>
+                            <li>Go to <strong>Visitors</strong> → <strong>Expected</strong></li>
+                            <li>Find the visitor you want to cancel</li>
+                            <li>Tap on their entry and select <strong>Cancel</strong></li>
+                        </ol>
+                        <p>The visitor will be notified that their access has been revoked.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Can my family members also approve visitors?
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! Your society admin can add multiple family members to the same flat. Each person logs in with their own phone number and can approve visitors independently.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Security Guards FAQ -->
+            <h2>For Security Guards</h2>
+            <div class="faq-section">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        A visitor doesn't have a QR code. What do I do?
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+                    <div class="faq-answer">
+                        <ol>
+                            <li>Search for the visitor's name or phone in the <strong>Expected Visitors</strong> list</li>
+                            <li>If found, verify their ID and check them in manually</li>
+                            <li>If not found, register them as a <strong>Walk-in</strong> and request approval from the resident</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        How do I check out a visitor?
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+                    <div class="faq-answer">
+                        <ol>
+                            <li>Go to <strong>Currently Inside</strong></li>
+                            <li>Find the visitor (search by name or flat)</li>
+                            <li>Tap <strong>Check Out</strong></li>
+                        </ol>
+                        <p>The visit time is automatically logged.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        What if the resident doesn't respond to an approval request?
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+                    <div class="faq-answer">
+                        <ul>
+                            <li>Wait for the timeout period (usually 5 minutes)</li>
+                            <li>If urgent, try calling the resident using the contact button in the app</li>
+                            <li>If no response, politely ask the visitor to wait or come back later</li>
+                            <li>Do not allow entry without approval (unless it's an emergency)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        How do I handle an emergency situation?
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+                    <div class="faq-answer">
+                        <p>For emergencies (ambulance, fire, police):</p>
+                        <ol>
+                            <li>Allow immediate entry</li>
+                            <li>Use <strong>Walk-in</strong> → <strong>Emergency Entry</strong> to log the visit</li>
+                            <li>Select the emergency type</li>
+                            <li>Notify your supervisor</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        The app says a visitor is "overstaying." What does that mean?
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Overstaying means the visitor has been inside for longer than the expected duration. You should:</p>
+                        <ol>
+                            <li>Contact the resident to verify the situation</li>
+                            <li>If the visitor has left, check them out to update the records</li>
+                            <li>If still visiting, no action needed (it's just an alert)</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Account & App FAQ -->
+            <h2>Account & App</h2>
+            <div class="faq-section">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        I didn't receive the OTP. What should I do?
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+                    <div class="faq-answer">
+                        <ol>
+                            <li>Wait 60 seconds (OTPs can be delayed)</li>
+                            <li>Tap "Resend OTP"</li>
+                            <li>Make sure you entered the correct phone number</li>
+                            <li>Check that your phone has network signal</li>
+                            <li>If still not received, contact your society admin</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        I moved to a new flat. How do I update my account?
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Contact your society admin. They will:</p>
+                        <ol>
+                            <li>Remove you from your old flat</li>
+                            <li>Add you to your new flat</li>
+                        </ol>
+                        <p>Your phone number stays the same, so you can continue using the same login.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Can I change my phone number?
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, but you'll need help from your society admin. Contact them with your old and new phone number, and they'll update your account.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Is my data safe and private?
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+                    <div class="faq-answer">
+                        <ul>
+                            <li>All data is encrypted in transit and at rest</li>
+                            <li>Only your society admin and security can see visitor records for your flat</li>
+                            <li>Other residents cannot see your visitor history</li>
+                            <li>Visitor photos are stored securely and access is restricted</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        The app is slow or not loading. What should I do?
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+                    <div class="faq-answer">
+                        <ol>
+                            <li>Check your internet connection</li>
+                            <li>Force close and reopen the app</li>
+                            <li>Update to the latest version from the app store</li>
+                            <li>Restart your phone if the problem persists</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Security & Privacy FAQ -->
+            <h2>Security & Privacy</h2>
+            <div class="faq-section">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        What is Two-Factor Authentication (2FA)?
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Two-Factor Authentication adds an extra layer of security to your account. After entering your password, you'll need to provide a 6-digit code from an authenticator app (like Google Authenticator or Microsoft Authenticator) to log in.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        How do I enable Two-Factor Authentication?
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+                    <div class="faq-answer">
+                        <ol>
+                            <li>Go to <strong>Profile</strong> → <strong>Security</strong> → <strong>Two-Factor Authentication</strong></li>
+                            <li>Click <strong>Enable 2FA</strong></li>
+                            <li>Scan the QR code with your authenticator app</li>
+                            <li>Enter the 6-digit code from the app to confirm</li>
+                            <li>Save your recovery codes in a secure location</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        What if I lose my 2FA device or can't access my authenticator app?
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Use one of your recovery codes that you saved when setting up 2FA:</p>
+                        <ol>
+                            <li>On the login screen, click <strong>Use Recovery Code</strong></li>
+                            <li>Enter one of your 8 recovery codes</li>
+                            <li>Each recovery code can only be used once</li>
+                        </ol>
+                        <p>If you've used all recovery codes, contact your administrator to reset 2FA.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        How do I regenerate my recovery codes?
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+                    <div class="faq-answer">
+                        <ol>
+                            <li>Go to <strong>Profile</strong> → <strong>Security</strong> → <strong>Two-Factor Authentication</strong></li>
+                            <li>Click <strong>Regenerate Recovery Codes</strong></li>
+                            <li>Save the new codes securely</li>
+                        </ol>
+                        <p class="warning-text">Note: Old recovery codes will no longer work after regenerating.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Can I disable Two-Factor Authentication?
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, unless your organization requires 2FA:</p>
+                        <ol>
+                            <li>Go to <strong>Profile</strong> → <strong>Security</strong> → <strong>Two-Factor Authentication</strong></li>
+                            <li>Click <strong>Disable 2FA</strong></li>
+                            <li>Confirm by entering your current 2FA code</li>
+                        </ol>
+                        <p class="warning-text">Warning: If your platform requires 2FA for administrators, you may need to re-enable it to access admin features.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Which authenticator apps are supported?
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+                    <div class="faq-answer">
+                        <p>GateFlux uses standard TOTP (Time-based One-Time Password), compatible with any authenticator app:</p>
+                        <ul>
+                            <li>Google Authenticator</li>
+                            <li>Microsoft Authenticator</li>
+                            <li>Authy</li>
+                            <li>1Password</li>
+                            <li>Any other TOTP-compatible app</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Admin FAQ -->
+            <h2>For Admins</h2>
+            <div class="faq-section">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        How do I add a new resident?
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+                    <div class="faq-answer">
+                        <ol>
+                            <li>Go to <strong>Residents</strong> in the admin panel</li>
+                            <li>Click <strong>Add Resident</strong></li>
+                            <li>Enter their name, phone number, and flat number</li>
+                            <li>Click <strong>Save</strong></li>
+                        </ol>
+                        <p>The resident can now log in using their phone number. <a href="admin-guide.html#adding-a-new-resident">Learn more</a></p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Can I import residents from a spreadsheet?
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! Use the bulk import feature:</p>
+                        <ol>
+                            <li>Go to <strong>Residents</strong> → <strong>Import</strong></li>
+                            <li>Download the template CSV file</li>
+                            <li>Fill in your resident data</li>
+                            <li>Upload the completed file</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        How do I remove a resident who moved out?
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+                    <div class="faq-answer">
+                        <ol>
+                            <li>Go to <strong>Residents</strong></li>
+                            <li>Search for the resident</li>
+                            <li>Click on their profile</li>
+                            <li>Click <strong>Deactivate</strong> (this preserves history) or <strong>Delete</strong> (permanent)</li>
+                        </ol>
+                        <p>Deactivating is recommended so you keep visitor records for that flat.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        How do I view visitor analytics?
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Go to <strong>Analytics</strong> in the admin panel. You can see:</p>
+                        <ul>
+                            <li>Daily/weekly/monthly visitor counts</li>
+                            <li>Peak visiting hours</li>
+                            <li>Visitor types breakdown (guests, delivery, service)</li>
+                            <li>Average visit duration</li>
+                        </ul>
+                        <p>Export reports as CSV or PDF for record-keeping.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        How do I require Two-Factor Authentication for all admins?
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Platform administrators can enforce 2FA for all admin users:</p>
+                        <ol>
+                            <li>Go to <strong>Platform Settings</strong> → <strong>Security</strong></li>
+                            <li>Enable <strong>Require Two-Factor Authentication</strong></li>
+                            <li>Save changes</li>
+                        </ol>
+                        <p>Once enabled, all admins must set up 2FA before accessing administrative features.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        How do I reset a user's Two-Factor Authentication?
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+                    <div class="faq-answer">
+                        <p>If a user is locked out and has used all recovery codes:</p>
+                        <ol>
+                            <li>Go to <strong>Users</strong> in the admin panel</li>
+                            <li>Find and select the user</li>
+                            <li>Click <strong>Reset 2FA</strong></li>
+                            <li>The user can now log in and set up 2FA again</li>
+                        </ol>
+                        <p class="warning-text">Only perform this after verifying the user's identity through other means.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Still have questions -->
+            <div class="info-box info">
+                <div class="info-box-title">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" y1="16" x2="12" y2="12"></line>
+                        <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                    </svg>
+                    Still have questions?
+                </div>
+                <p>
+                    Check the <a href="6-troubleshooting.html">Troubleshooting guide</a> for technical issues, 
+                    or contact your society admin. You can also reach GateFlux support at 
+                    <a href="mailto:support@gateflux.co">support@gateflux.co</a>.
+                </p>
+            </div>
+
+            <div class="doc-footer">
+                <a href="6-troubleshooting.html">
+                    <span>Previous</span>
+                    <span>← Troubleshooting</span>
+                </a>
+                <a href="resident-guide.html" class="next">
+                    <span>Next</span>
+                    <span>Resident Guide →</span>
+                </a>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('open');
+        }
+
+        // FAQ accordion functionality
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                const wasOpen = item.classList.contains('open');
+                
+                // Close all items
+                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+                
+                // Open clicked item if it wasn't open
+                if (!wasOpen) {
+                    item.classList.add('open');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

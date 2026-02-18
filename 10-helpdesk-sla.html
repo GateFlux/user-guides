@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Helpdesk & SLA - GateFlux Documentation</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <button class="mobile-menu-btn" onclick="toggleSidebar()">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+    </button>
+
+    <div class="doc-container">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="sidebar-logo">
+                    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="40" height="40" rx="8" fill="url(#gradient)"/>
+                        <path d="M12 14h16M12 20h16M12 26h10" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                        <defs>
+                            <linearGradient id="gradient" x1="0" y1="0" x2="40" y2="40">
+                                <stop stop-color="#2563eb"/>
+                                <stop offset="1" stop-color="#06b6d4"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <span>GateFlux</span>
+                </a>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <div class="nav-section-title">Getting Started</div>
+                    <a href="1-getting-started.html" class="nav-link">Getting Started Guide</a>
+                    <a href="2-user-management.html" class="nav-link">User Management & RBAC</a>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">Core Features</div>
+                    <a href="3-visitor-management.html" class="nav-link">Visitor Management</a>
+                    <a href="4-api-integration.html" class="nav-link">API Integration</a>
+                    <a href="8-governance.html" class="nav-link">Governance & Elections</a>
+                    <a href="9-finance.html" class="nav-link">Finance & Expenses</a>
+                    <a href="10-helpdesk-sla.html" class="nav-link active">Helpdesk & SLA</a>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">Administration</div>
+                    <a href="5-configuration.html" class="nav-link">Configuration</a>
+                    <a href="11-dashboards.html" class="nav-link">Role-Based Dashboards</a>
+                    <a href="6-troubleshooting.html" class="nav-link">Troubleshooting</a>
+                    <a href="7-faq.html" class="nav-link">FAQ</a>
+                </div>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <div class="breadcrumb">
+                <a href="index.html">Docs</a>
+                <span>›</span>
+                <span>Helpdesk & SLA</span>
+            </div>
+
+            <div class="intro-box">
+                <h1>Helpdesk & SLA Management</h1>
+                <p>Configure SLA rules, manage complaint escalations, and track resolution metrics.</p>
+            </div>
+
+            <h2>Overview</h2>
+            <p>GateFlux provides a comprehensive complaint management system with configurable SLA rules and automatic escalation:</p>
+            <ul>
+                <li><strong>SLA Configuration</strong> - Set response and resolution times per category</li>
+                <li><strong>Automatic Escalation</strong> - Overdue complaints escalate automatically</li>
+                <li><strong>Escalation Hierarchy</strong> - Committee Member → Secretary → President</li>
+                <li><strong>SLA Metrics</strong> - Track compliance and performance</li>
+            </ul>
+
+            <h2>SLA Configuration</h2>
+
+            <h3>Creating SLA Configuration</h3>
+            <p>Configure SLA for a complaint category:</p>
+
+            <div class="code-block">
+                <span class="code-label">HTTP</span>
+                <pre><code>POST /api/v1/sla/configurations
+Authorization: Bearer &lt;token&gt;
+Content-Type: application/json
+
+{
+    "complaint_category_id": "uuid-of-category",
+    "name": "Plumbing Issues SLA",
+    "first_response_hours": 4,
+    "resolution_hours": 48,
+    "priority": "high",
+    "is_active": true
+}</code></pre>
+            </div>
+
+            <h3>SLA Parameters</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Description</th>
+                        <th>Default</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>first_response_hours</code></td>
+                        <td>Maximum hours to acknowledge complaint</td>
+                        <td>24 hours</td>
+                    </tr>
+                    <tr>
+                        <td><code>resolution_hours</code></td>
+                        <td>Maximum hours to resolve complaint</td>
+                        <td>72 hours</td>
+                    </tr>
+                    <tr>
+                        <td><code>priority</code></td>
+                        <td>Default priority for category</td>
+                        <td>medium</td>
+                    </tr>
+                    <tr>
+                        <td><code>business_hours_only</code></td>
+                        <td>Count only business hours</td>
+                        <td>false</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Priority Levels</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Priority</th>
+                        <th>Response Time</th>
+                        <th>Resolution Time</th>
+                        <th>Examples</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="badge badge-error">Critical</span></td>
+                        <td>1 hour</td>
+                        <td>4 hours</td>
+                        <td>Fire safety, water main burst</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge badge-warning">High</span></td>
+                        <td>4 hours</td>
+                        <td>24 hours</td>
+                        <td>Elevator breakdown, power outage</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge badge-info">Medium</span></td>
+                        <td>24 hours</td>
+                        <td>72 hours</td>
+                        <td>Plumbing issues, intercom repair</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge badge-success">Low</span></td>
+                        <td>48 hours</td>
+                        <td>168 hours</td>
+                        <td>Painting, landscaping requests</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>Escalation Rules</h2>
+
+            <h3>Default Escalation Hierarchy</h3>
+            <div class="callout info">
+                <strong>Automatic Escalation Flow:</strong>
+                <ol style="margin: 12px 0 0 20px;">
+                    <li><strong>Level 1:</strong> Assigned to Committee Member (after SLA breach)</li>
+                    <li><strong>Level 2:</strong> Escalated to Secretary (after 24 more hours)</li>
+                    <li><strong>Level 3:</strong> Escalated to President (after 24 more hours)</li>
+                </ol>
+            </div>
+
+            <h3>Adding Escalation Rules</h3>
+            <p>Customize escalation for specific SLA configurations:</p>
+
+            <div class="code-block">
+                <span class="code-label">HTTP</span>
+                <pre><code>POST /api/v1/sla/configurations/{sla_id}/rules
+Authorization: Bearer &lt;token&gt;
+Content-Type: application/json
+
+{
+    "escalation_level": 1,
+    "hours_after_breach": 0,
+    "escalate_to_role": "committee_member",
+    "notify_via": ["email", "push"],
+    "is_active": true
+}</code></pre>
+            </div>
+
+            <h3>Escalation Parameters</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>escalation_level</code></td>
+                        <td>Level number (1, 2, 3, etc.)</td>
+                    </tr>
+                    <tr>
+                        <td><code>hours_after_breach</code></td>
+                        <td>Hours after SLA breach to escalate</td>
+                    </tr>
+                    <tr>
+                        <td><code>escalate_to_role</code></td>
+                        <td>Role to escalate to (committee_member, secretary, president)</td>
+                    </tr>
+                    <tr>
+                        <td><code>notify_via</code></td>
+                        <td>Notification channels: email, push, sms</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>Manual Escalation</h2>
+
+            <p>Manually escalate a complaint when needed:</p>
+
+            <div class="code-block">
+                <span class="code-label">HTTP</span>
+                <pre><code>POST /api/v1/complaints/{complaint_id}/manual-escalate
+Authorization: Bearer &lt;token&gt;
+Content-Type: application/json
+
+{
+    "reason": "Resident has reported the issue persists despite vendor visit"
+}</code></pre>
+            </div>
+
+            <h2>SLA Metrics</h2>
+
+            <h3>View SLA Performance</h3>
+
+            <div class="code-block">
+                <span class="code-label">HTTP</span>
+                <pre><code>GET /api/v1/sla/metrics
+Authorization: Bearer &lt;token&gt;</code></pre>
+            </div>
+
+            <p><strong>Response:</strong></p>
+            <div class="code-block">
+                <span class="code-label">JSON</span>
+                <pre><code>{
+    "success": true,
+    "data": {
+        "period": "2026-02",
+        "metrics": {
+            "total_complaints": 45,
+            "sla_met": 38,
+            "sla_breached": 7,
+            "sla_compliance_rate": 84.4,
+            "avg_first_response_hours": 3.2,
+            "avg_resolution_hours": 28.5
+        },
+        "by_category": [
+            {
+                "category": "Plumbing",
+                "total": 12,
+                "sla_met": 10,
+                "compliance_rate": 83.3
+            },
+            {
+                "category": "Electrical",
+                "total": 8,
+                "sla_met": 7,
+                "compliance_rate": 87.5
+            }
+        ],
+        "escalation_stats": {
+            "level_1_escalations": 7,
+            "level_2_escalations": 3,
+            "level_3_escalations": 1
+        }
+    }
+}</code></pre>
+            </div>
+
+            <h2>Escalation History</h2>
+
+            <p>View escalation history for a specific complaint:</p>
+
+            <div class="code-block">
+                <span class="code-label">HTTP</span>
+                <pre><code>GET /api/v1/complaints/{complaint_id}/escalations
+Authorization: Bearer &lt;token&gt;</code></pre>
+            </div>
+
+            <p><strong>Response:</strong></p>
+            <div class="code-block">
+                <span class="code-label">JSON</span>
+                <pre><code>{
+    "success": true,
+    "data": [
+        {
+            "id": "uuid",
+            "from_level": 0,
+            "to_level": 1,
+            "escalated_to_role": "committee_member",
+            "escalated_to_user": {
+                "id": "uuid",
+                "name": "Ramesh Kumar"
+            },
+            "reason": "SLA breach - Resolution time exceeded",
+            "created_at": "2026-02-15T14:30:00Z"
+        },
+        {
+            "id": "uuid",
+            "from_level": 1,
+            "to_level": 2,
+            "escalated_to_role": "secretary",
+            "escalated_to_user": {
+                "id": "uuid",
+                "name": "Priya Sharma"
+            },
+            "reason": "No resolution after first escalation",
+            "created_at": "2026-02-16T14:30:00Z"
+        }
+    ]
+}</code></pre>
+            </div>
+
+            <h2>Automatic Escalation Job</h2>
+
+            <p>GateFlux runs an automatic escalation job every 30 minutes to check for overdue complaints and trigger escalations.</p>
+
+            <h3>Manual Trigger (CLI)</h3>
+            <p>Administrators can manually trigger the escalation check:</p>
+
+            <div class="code-block">
+                <span class="code-label">BASH</span>
+                <pre><code># Dry run (preview only)
+php artisan complaints:escalate --dry-run
+
+# Execute escalations
+php artisan complaints:escalate</code></pre>
+            </div>
+
+            <h2>Notification Flow</h2>
+
+            <p>When a complaint is escalated, notifications are sent to:</p>
+
+            <ol class="steps">
+                <li>The user the complaint is escalated to</li>
+                <li>The original complainant (resident)</li>
+                <li>Previous assignee (optional)</li>
+            </ol>
+
+            <h2>Required Capabilities</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Action</th>
+                        <th>Required Capability</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>View SLA configurations</td>
+                        <td><code>helpdesk.sla_view</code></td>
+                    </tr>
+                    <tr>
+                        <td>Manage SLA configurations</td>
+                        <td><code>helpdesk.sla_manage</code></td>
+                    </tr>
+                    <tr>
+                        <td>View all tickets</td>
+                        <td><code>helpdesk.tickets_view_all</code></td>
+                    </tr>
+                    <tr>
+                        <td>Escalate tickets</td>
+                        <td><code>helpdesk.tickets_escalate</code></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="nav-buttons">
+                <a href="9-finance.html" class="nav-btn prev">← Finance & Expenses</a>
+                <a href="11-dashboards.html" class="nav-btn next">Role-Based Dashboards →</a>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('open');
+        }
+    </script>
+</body>
+</html>

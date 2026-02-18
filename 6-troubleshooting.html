@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Troubleshooting - GateFlux Documentation</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <button class="mobile-menu-btn" onclick="toggleSidebar()">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+    </button>
+
+    <div class="doc-container">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="sidebar-logo">
+                    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="40" height="40" rx="8" fill="url(#gradient)"/>
+                        <path d="M12 14h16M12 20h16M12 26h10" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                        <defs>
+                            <linearGradient id="gradient" x1="0" y1="0" x2="40" y2="40">
+                                <stop stop-color="#2563eb"/>
+                                <stop offset="1" stop-color="#06b6d4"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <span>GateFlux</span>
+                </a>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <div class="nav-section-title">Getting Started</div>
+                    <a href="1-getting-started.html" class="nav-link">Getting Started Guide</a>
+                    <a href="2-user-management.html" class="nav-link">User Management & RBAC</a>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">Core Features</div>
+                    <a href="3-visitor-management.html" class="nav-link">Visitor Management</a>
+                    <a href="4-api-integration.html" class="nav-link">API Integration</a>
+                    <a href="8-governance.html" class="nav-link">Governance & Elections</a>
+                    <a href="9-finance.html" class="nav-link">Finance & Expenses</a>
+                    <a href="10-helpdesk-sla.html" class="nav-link">Helpdesk & SLA</a>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">Administration</div>
+                    <a href="5-configuration.html" class="nav-link">Configuration</a>
+                    <a href="11-dashboards.html" class="nav-link">Role-Based Dashboards</a>
+                    <a href="6-troubleshooting.html" class="nav-link active">Troubleshooting</a>
+                    <a href="7-faq.html" class="nav-link">FAQ</a>
+                </div>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <div class="breadcrumb">
+                <a href="index.html">Docs</a>
+                <span>›</span>
+                <span>Troubleshooting</span>
+            </div>
+
+            <div class="intro-box">
+                <h1>Troubleshooting Guide</h1>
+                <p>Diagnose and resolve common issues with GateFlux installations and operations.</p>
+            </div>
+
+            <h2>Installation Issues</h2>
+
+            <h3>API (Laravel) Issues</h3>
+
+            <h4>Composer Install Fails</h4>
+            <p><strong>Error:</strong></p>
+            <div class="code-block">
+                <pre><code>Your requirements could not be resolved to an installable set of packages.</code></pre>
+            </div>
+
+            <p><strong>Solution:</strong></p>
+            <div class="code-block">
+                <span class="code-label">Bash</span>
+                <pre><code># Update composer
+composer self-update
+
+# Clear cache and retry
+composer clear-cache
+composer install --no-cache</code></pre>
+            </div>
+
+            <h4>Database Connection Error</h4>
+            <p><strong>Error:</strong></p>
+            <div class="code-block">
+                <pre><code>SQLSTATE[HY000] [2002] Connection refused</code></pre>
+            </div>
+
+            <p><strong>Solutions:</strong></p>
+            <ol class="steps">
+                <li>
+                    <strong>Verify MySQL is running:</strong>
+                    <pre><code># Windows
+net start mysql
+
+# Linux/Mac
+sudo systemctl status mysql</code></pre>
+                </li>
+                <li>
+                    <strong>Check <code>.env</code> database settings:</strong>
+                    <pre><code>DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=gateflux
+DB_USERNAME=root
+DB_PASSWORD=your_password</code></pre>
+                </li>
+                <li>
+                    <strong>Create database if it doesn't exist:</strong>
+                    <pre><code>CREATE DATABASE gateflux CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;</code></pre>
+                </li>
+            </ol>
+
+            <h4>Migration Errors</h4>
+            <p><strong>Error:</strong></p>
+            <div class="code-block">
+                <pre><code>SQLSTATE[42S01]: Base table or view already exists</code></pre>
+            </div>
+
+            <p><strong>Solution:</strong></p>
+            <div class="code-block">
+                <span class="code-label">Bash</span>
+                <pre><code># Fresh migration (WARNING: Deletes all data)
+php artisan migrate:fresh
+
+# Or rollback and re-run
+php artisan migrate:rollback
+php artisan migrate</code></pre>
+            </div>
+
+            <h4>Permission Errors</h4>
+            <p><strong>Error:</strong></p>
+            <div class="code-block">
+                <pre><code>The stream or file "storage/logs/laravel.log" could not be opened</code></pre>
+            </div>
+
+            <p><strong>Solution:</strong></p>
+            <div class="code-block">
+                <span class="code-label">Bash</span>
+                <pre><code># Linux/Mac
+sudo chmod -R 775 storage bootstrap/cache
+sudo chown -R www-data:www-data storage bootstrap/cache
+
+# Windows (run as Administrator)
+icacls storage /grant Users:F /T
+icacls bootstrap\cache /grant Users:F /T</code></pre>
+            </div>
+
+            <h3>Web Application Issues</h3>
+
+            <h4>npm Install Fails</h4>
+            <p><strong>Error:</strong></p>
+            <div class="code-block">
+                <pre><code>npm ERR! ERESOLVE unable to resolve dependency tree</code></pre>
+            </div>
+
+            <p><strong>Solution:</strong></p>
+            <div class="code-block">
+                <span class="code-label">Bash</span>
+                <pre><code># Clear npm cache
+npm cache clean --force
+
+# Delete node_modules and lock file
+rm -rf node_modules package-lock.json
+
+# Install with legacy peer deps
+npm install --legacy-peer-deps</code></pre>
+            </div>
+
+            <h4>Build Errors</h4>
+            <p><strong>Error:</strong></p>
+            <div class="code-block">
+                <pre><code>Error: Cannot find module 'vite'</code></pre>
+            </div>
+
+            <p><strong>Solution:</strong></p>
+            <div class="code-block">
+                <span class="code-label">Bash</span>
+                <pre><code># Reinstall dependencies
+rm -rf node_modules
+npm install
+
+# If still failing, install vite globally
+npm install -g vite</code></pre>
+            </div>
+
+            <h4>CORS Errors</h4>
+            <p><strong>Error in browser console:</strong></p>
+            <div class="code-block">
+                <pre><code>Access to XMLHttpRequest blocked by CORS policy</code></pre>
+            </div>
+
+            <p><strong>Solution:</strong></p>
+            <ol class="steps">
+                <li>
+                    <strong>Check API <code>.env</code>:</strong>
+                    <pre><code>SANCTUM_STATEFUL_DOMAINS=localhost:5173,localhost:3000
+SESSION_DOMAIN=localhost</code></pre>
+                </li>
+                <li>
+                    <strong>Update <code>api/config/cors.php</code>:</strong>
+                    <pre><code>'allowed_origins' => ['http://localhost:5173', 'http://localhost:3000'],
+'supports_credentials' => true,</code></pre>
+                </li>
+            </ol>
+
+            <h3>Mobile Application Issues</h3>
+
+            <h4>iOS Pod Install Fails</h4>
+            <p><strong>Error:</strong></p>
+            <div class="code-block">
+                <pre><code>[!] CocoaPods could not find compatible versions</code></pre>
+            </div>
+
+            <p><strong>Solution:</strong></p>
+            <div class="code-block">
+                <span class="code-label">Bash</span>
+                <pre><code>cd ios
+rm -rf Pods Podfile.lock
+pod repo update
+pod install</code></pre>
+            </div>
+
+            <h4>Android Build Fails</h4>
+            <p><strong>Error:</strong></p>
+            <div class="code-block">
+                <pre><code>Could not find com.android.tools.build:gradle</code></pre>
+            </div>
+
+            <p><strong>Solution:</strong></p>
+            <ol class="steps">
+                <li>
+                    <strong>Update <code>android/build.gradle</code>:</strong>
+                    <pre><code>classpath 'com.android.tools.build:gradle:8.1.0'</code></pre>
+                </li>
+                <li>
+                    <strong>Clean and rebuild:</strong>
+                    <pre><code>cd android
+./gradlew clean
+cd ..
+yarn android</code></pre>
+                </li>
+            </ol>
+
+            <h4>Metro Bundler Issues</h4>
+            <p><strong>Error:</strong></p>
+            <div class="code-block">
+                <pre><code>Unable to resolve module</code></pre>
+            </div>
+
+            <p><strong>Solution:</strong></p>
+            <div class="code-block">
+                <span class="code-label">Bash</span>
+                <pre><code># Clear Metro cache
+npx react-native start --reset-cache
+
+# Or
+yarn start --reset-cache</code></pre>
+            </div>
+
+            <h2>Runtime Issues</h2>
+
+            <h3>Authentication Problems</h3>
+
+            <h4>Token Invalid or Expired</h4>
+            <p><strong>Symptoms:</strong></p>
+            <ul>
+                <li>401 Unauthorized responses</li>
+                <li>Automatic logout</li>
+            </ul>
+
+            <p><strong>Solutions:</strong></p>
+            <ol class="steps">
+                <li>
+                    <strong>Check token expiration in API:</strong>
+                    <pre><code>// config/sanctum.php
+'expiration' => 60 * 24, // 24 hours</code></pre>
+                </li>
+                <li>
+                    <strong>Implement token refresh in client:</strong>
+                    <pre><code>axios.interceptors.response.use(
+    response => response,
+    async error => {
+        if (error.response.status === 401) {
+            await refreshToken();
+            return axios(error.config);
+        }
+        throw error;
+    }
+);</code></pre>
+                </li>
+            </ol>
+
+            <h4>Login Fails</h4>
+            <p><strong>Error:</strong></p>
+            <div class="code-block">
+                <span class="code-label">JSON</span>
+                <pre><code>{
+    "message": "These credentials do not match our records."
+}</code></pre>
+            </div>
+
+            <p><strong>Solutions:</strong></p>
+            <ol class="steps">
+                <li>
+                    <strong>Verify user exists:</strong>
+                    <pre><code>php artisan tinker
+>>> User::where('email', 'user@example.com')->first()</code></pre>
+                </li>
+                <li>
+                    <strong>Reset password:</strong>
+                    <pre><code>php artisan tinker
+>>> $user = User::where('email', 'user@example.com')->first();
+>>> $user->password = Hash::make('newpassword');
+>>> $user->save();</code></pre>
+                </li>
+            </ol>
+
+            <h4>Two-Factor Authentication Issues</h4>
+            <p><strong>Symptoms:</strong></p>
+            <ul>
+                <li>2FA codes not working</li>
+                <li>User locked out after losing 2FA device</li>
+                <li>QR code not scanning</li>
+            </ul>
+
+            <p><strong>Solutions:</strong></p>
+            <ol class="steps">
+                <li>
+                    <strong>2FA code not working - Check server time sync:</strong>
+                    <p>TOTP codes are time-sensitive. Ensure server time is synchronized:</p>
+                    <pre><code># Check server time
+date
+# Sync with NTP
+timedatectl set-ntp true</code></pre>
+                </li>
+                <li>
+                    <strong>User locked out - Reset 2FA via database:</strong>
+                    <pre><code>php artisan tinker
+>>> $user = User::where('email', 'user@example.com')->first();
+>>> $user->two_factor_secret = null;
+>>> $user->two_factor_enabled = false;
+>>> $user->two_factor_recovery_codes = null;
+>>> $user->two_factor_confirmed_at = null;
+>>> $user->save();</code></pre>
+                </li>
+                <li>
+                    <strong>QR code not scanning - Manual entry:</strong>
+                    <p>Users can manually enter the secret key shown below the QR code into their authenticator app instead of scanning.</p>
+                </li>
+                <li>
+                    <strong>Recovery codes not working:</strong>
+                    <ul>
+                        <li>Check the code hasn't been used before (each code is single-use)</li>
+                        <li>Verify no extra spaces or characters were copied</li>
+                        <li>Recovery codes are case-sensitive</li>
+                    </ul>
+                </li>
+            </ol>
+
+            <h3>Notification Issues</h3>
+
+            <h4>Push Notifications Not Received</h4>
+            <p><strong>Checklist:</strong></p>
+            <ol>
+                <li>Verify Firebase configuration:
+                    <pre><code># Test Firebase connection
+php artisan firebase:test</code></pre>
+                </li>
+                <li>Check device token is saved:
+                    <pre><code>SELECT * FROM device_tokens WHERE user_id = 1;</code></pre>
+                </li>
+                <li>Verify notification permissions on device</li>
+            </ol>
+
+            <h4>SMS Not Sending</h4>
+            <p><strong>Checklist:</strong></p>
+            <ol>
+                <li>Verify SMS provider credentials:
+                    <pre><code>php artisan tinker
+>>> config('services.twilio')</code></pre>
+                </li>
+                <li>Check SMS logs:
+                    <pre><code>SELECT * FROM sms_logs ORDER BY created_at DESC LIMIT 10;</code></pre>
+                </li>
+                <li>Test SMS sending:
+                    <pre><code>php artisan sms:test +919876543210 "Test message"</code></pre>
+                </li>
+            </ol>
+
+            <h3>Performance Issues</h3>
+
+            <h4>Slow API Response</h4>
+            <p><strong>Diagnosis:</strong></p>
+            <div class="code-block">
+                <span class="code-label">Bash</span>
+                <pre><code>php artisan tinker
+>>> DB::enableQueryLog();
+>>> // Make API request
+>>> DB::getQueryLog();</code></pre>
+            </div>
+
+            <p><strong>Solutions:</strong></p>
+            <ol>
+                <li><strong>Add database indexes:</strong>
+                    <pre><code>Schema::table('visitors', function ($table) {
+    $table->index('society_id');
+    $table->index('created_at');
+});</code></pre>
+                </li>
+                <li><strong>Use eager loading:</strong>
+                    <pre><code>// Instead of
+$visitors = Visitor::all();
+foreach ($visitors as $visitor) {
+    echo $visitor->flat->number;
+}
+
+// Use
+$visitors = Visitor::with('flat')->get();</code></pre>
+                </li>
+                <li><strong>Enable caching:</strong>
+                    <pre><code>php artisan config:cache
+php artisan route:cache</code></pre>
+                </li>
+            </ol>
+
+            <h4>High Memory Usage</h4>
+            <p><strong>Solutions:</strong></p>
+            <ol>
+                <li><strong>Process large datasets in chunks:</strong>
+                    <pre><code>Visitor::chunk(100, function ($visitors) {
+    foreach ($visitors as $visitor) {
+        // Process
+    }
+});</code></pre>
+                </li>
+                <li><strong>Clear old sessions:</strong>
+                    <pre><code>php artisan session:clear</code></pre>
+                </li>
+                <li><strong>Optimize autoloader:</strong>
+                    <pre><code>composer install --optimize-autoloader --no-dev</code></pre>
+                </li>
+            </ol>
+
+            <h2>Error Codes Reference</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Code</th>
+                        <th>Message</th>
+                        <th>Cause</th>
+                        <th>Solution</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>1001</code></td>
+                        <td>Invalid society</td>
+                        <td>Society ID not found</td>
+                        <td>Verify society exists</td>
+                    </tr>
+                    <tr>
+                        <td><code>1002</code></td>
+                        <td>Invalid flat</td>
+                        <td>Flat ID not found</td>
+                        <td>Verify flat exists</td>
+                    </tr>
+                    <tr>
+                        <td><code>2001</code></td>
+                        <td>Visitor limit exceeded</td>
+                        <td>Too many concurrent visitors</td>
+                        <td>Wait or increase limit</td>
+                    </tr>
+                    <tr>
+                        <td><code>2002</code></td>
+                        <td>Blacklisted visitor</td>
+                        <td>Visitor is blacklisted</td>
+                        <td>Contact admin</td>
+                    </tr>
+                    <tr>
+                        <td><code>3001</code></td>
+                        <td>SMS sending failed</td>
+                        <td>SMS provider error</td>
+                        <td>Check SMS credentials</td>
+                    </tr>
+                    <tr>
+                        <td><code>3002</code></td>
+                        <td>Push notification failed</td>
+                        <td>Firebase error</td>
+                        <td>Check Firebase config</td>
+                    </tr>
+                    <tr>
+                        <td><code>4001</code></td>
+                        <td>File upload failed</td>
+                        <td>Storage issue</td>
+                        <td>Check storage permissions</td>
+                    </tr>
+                    <tr>
+                        <td><code>5001</code></td>
+                        <td>Rate limit exceeded</td>
+                        <td>Too many requests</td>
+                        <td>Wait and retry</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>Logging & Debugging</h2>
+
+            <h3>Enable Debug Mode</h3>
+            <div class="info-box warning">
+                <div class="info-box-title">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                        <line x1="12" y1="9" x2="12" y2="13"></line>
+                        <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                    </svg>
+                    Warning
+                </div>
+                <p>DO NOT use debug mode in production!</p>
+            </div>
+            <div class="code-block">
+                <span class="code-label">ENV</span>
+                <pre><code>APP_DEBUG=true
+LOG_LEVEL=debug</code></pre>
+            </div>
+
+            <h3>View Logs</h3>
+            <div class="code-block">
+                <span class="code-label">Bash</span>
+                <pre><code># View latest logs
+tail -f storage/logs/laravel.log
+
+# Search for errors
+grep -i "error" storage/logs/laravel.log</code></pre>
+            </div>
+
+            <h3>Debug API Requests</h3>
+            <p>Use Laravel Telescope (development only):</p>
+            <div class="code-block">
+                <span class="code-label">Bash</span>
+                <pre><code>composer require laravel/telescope --dev
+php artisan telescope:install
+php artisan migrate</code></pre>
+            </div>
+            <p>Access at: <code>http://localhost:8000/telescope</code></p>
+
+            <h2>Getting Help</h2>
+
+            <h3>Support Channels</h3>
+            <ol>
+                <li><strong>Documentation</strong>: Check all guides in this documentation</li>
+                <li><strong>Issue Tracker</strong>: Report bugs on GitHub Issues</li>
+                <li><strong>Email Support</strong>: support@gateflux.co</li>
+                <li><strong>Emergency</strong>: For critical production issues, call support hotline</li>
+            </ol>
+
+            <h3>Providing Debug Information</h3>
+            <p>When reporting issues, include:</p>
+            <ol>
+                <li>Error message and stack trace</li>
+                <li>Steps to reproduce</li>
+                <li>Environment details:
+                    <pre><code>php artisan about
+npm --version
+node --version</code></pre>
+                </li>
+                <li>Relevant log entries</li>
+                <li>Screenshots (if applicable)</li>
+            </ol>
+
+            <div class="doc-footer">
+                <a href="5-configuration.html">
+                    <span>Previous</span>
+                    <span>← Configuration</span>
+                </a>
+                <a href="7-faq.html" class="next">
+                    <span>Next</span>
+                    <span>FAQ →</span>
+                </a>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('open');
+        }
+    </script>
+</body>
+</html>

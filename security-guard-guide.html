@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security Guard Guide - GateFlux Documentation</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <button class="mobile-menu-btn" onclick="toggleSidebar()">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+    </button>
+
+    <div class="doc-container">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="sidebar-logo">
+                    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="40" height="40" rx="8" fill="url(#gradient)"/>
+                        <path d="M12 14h16M12 20h16M12 26h10" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                        <defs>
+                            <linearGradient id="gradient" x1="0" y1="0" x2="40" y2="40">
+                                <stop stop-color="#2563eb"/>
+                                <stop offset="1" stop-color="#06b6d4"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <span>GateFlux</span>
+                </a>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <div class="nav-section-title">Getting Started</div>
+                    <a href="1-getting-started.html" class="nav-link">Quick Start Guide</a>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">User Guides</div>
+                    <a href="resident-guide.html" class="nav-link">Resident Guide</a>
+                    <a href="security-guard-guide.html" class="nav-link active">Security Guard Guide</a>
+                    <a href="admin-guide.html" class="nav-link">Admin Guide</a>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">Help</div>
+                    <a href="6-troubleshooting.html" class="nav-link">Troubleshooting</a>
+                    <a href="7-faq.html" class="nav-link">FAQ</a>
+                </div>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <div class="breadcrumb">
+                <a href="index.html">Docs</a>
+                <span>›</span>
+                <span>Security Guard Guide</span>
+            </div>
+
+            <div class="intro-box">
+                <h1>Security Guard Guide</h1>
+                <p>Learn how to manage visitor entry, check-ins, check-outs, and maintain gate security using GateFlux.</p>
+            </div>
+
+            <h2>Getting Started</h2>
+            <p>Your society admin will provide you with login credentials for the GateFlux Security app.</p>
+
+            <h3>Logging In</h3>
+            <ol class="steps">
+                <li><strong>Open the GateFlux Security app</strong></li>
+                <li><strong>Enter your phone number</strong> and the OTP sent to you</li>
+                <li><strong>Select your gate</strong> if your society has multiple entry points</li>
+                <li>You'll see the <strong>Gate Dashboard</strong> with today's visitors</li>
+            </ol>
+
+            <h2>Understanding the Dashboard</h2>
+            <p>Your main screen shows:</p>
+            <ul>
+                <li><strong>Expected Visitors</strong> – Pre-approved visitors arriving today (green cards)</li>
+                <li><strong>Currently Inside</strong> – Visitors who have checked in but not checked out</li>
+                <li><strong>Quick Actions</strong> – Buttons to scan QR, add walk-in, or search</li>
+            </ul>
+
+            <!-- Mock Screen: Guard Dashboard -->
+            <div class="screen-gallery">
+                <div class="screen-item">
+                    <div class="phone-mockup">
+                        <div class="phone-screen">
+                            <div class="mock-header">
+                                <h3>Gate Dashboard</h3>
+                            </div>
+                            <div class="mock-content">
+                                <div class="mock-stats">
+                                    <div class="mock-stat">
+                                        <div class="mock-stat-value">12</div>
+                                        <div class="mock-stat-label">Expected Today</div>
+                                    </div>
+                                    <div class="mock-stat">
+                                        <div class="mock-stat-value" style="color: var(--success-color);">5</div>
+                                        <div class="mock-stat-label">Currently Inside</div>
+                                    </div>
+                                </div>
+                                
+                                <div style="display: flex; gap: 8px; margin-bottom: 16px;">
+                                    <div class="mock-btn" style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 6px; padding: 12px;">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                                            <line x1="3" y1="9" x2="21" y2="9"/>
+                                            <line x1="9" y1="21" x2="9" y2="9"/>
+                                        </svg>
+                                        Scan QR
+                                    </div>
+                                    <div class="mock-btn mock-btn-secondary" style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 6px; padding: 12px;">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <circle cx="11" cy="11" r="8"/>
+                                            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                                        </svg>
+                                        Search
+                                    </div>
+                                </div>
+                                
+                                <div style="font-weight: 600; font-size: 13px; margin-bottom: 10px; color: var(--text-color);">Expected Visitors</div>
+                                <div class="mock-card">
+                                    <div class="mock-card-header">
+                                        <div>
+                                            <div class="mock-card-title">Priya Sharma</div>
+                                            <div class="mock-card-subtitle">Guest → A-101</div>
+                                        </div>
+                                        <span class="mock-card-badge mock-badge-approved">Expected</span>
+                                    </div>
+                                    <div style="font-size: 11px; color: var(--text-light);">Expected: 3:00 PM - 5:00 PM</div>
+                                </div>
+                                <div class="mock-card">
+                                    <div class="mock-card-header">
+                                        <div>
+                                            <div class="mock-card-title">Amazon Delivery</div>
+                                            <div class="mock-card-subtitle">Delivery → B-205</div>
+                                        </div>
+                                        <span class="mock-card-badge mock-badge-approved">Expected</span>
+                                    </div>
+                                    <div style="font-size: 11px; color: var(--text-light);">Expected: 2:00 PM - 6:00 PM</div>
+                                </div>
+                            </div>
+                            <div class="mock-bottom-nav">
+                                <div class="mock-nav-item active">
+                                    <svg class="mock-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/>
+                                    </svg>
+                                    Dashboard
+                                </div>
+                                <div class="mock-nav-item">
+                                    <svg class="mock-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
+                                    </svg>
+                                    Inside
+                                </div>
+                                <div class="mock-nav-item">
+                                    <svg class="mock-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/>
+                                    </svg>
+                                    Walk-in
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="screen-caption">Guard Dashboard</div>
+                </div>
+            </div>
+
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14"></path>
+                            <path d="M12 5l7 7-7 7"></path>
+                        </svg>
+                        Check In
+                    </h4>
+                    <p>When a visitor arrives, verify and record their entry.</p>
+                </div>
+                <div class="feature-card">
+                    <h4>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M19 12H5"></path>
+                            <path d="M12 19l-7-7 7-7"></path>
+                        </svg>
+                        Check Out
+                    </h4>
+                    <p>When a visitor leaves, record their exit time.</p>
+                </div>
+            </div>
+
+            <h2>Checking In a Pre-Approved Visitor</h2>
+            <p>When a visitor says they are expected:</p>
+
+            <h3>Method 1: Scan QR Code (Fastest)</h3>
+            <ol class="steps">
+                <li>Tap the <strong>Scan QR</strong> button</li>
+                <li>Point your camera at the visitor's QR code</li>
+                <li>The visitor details will appear automatically</li>
+                <li>Verify the name and photo match</li>
+                <li>Tap <strong>Check In</strong></li>
+            </ol>
+
+            <!-- Mock Screen: QR Scan Result -->
+            <div class="screen-gallery">
+                <div class="screen-item">
+                    <div class="phone-mockup">
+                        <div class="phone-screen">
+                            <div class="mock-header mock-header-with-back">
+                                <svg class="mock-back-btn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M19 12H5M12 19l-7-7 7-7"/>
+                                </svg>
+                                <h3>Visitor Found</h3>
+                            </div>
+                            <div class="mock-content" style="padding-top: 24px;">
+                                <div style="text-align: center; margin-bottom: 20px;">
+                                    <div style="width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, var(--success-color), #34d399); display: flex; align-items: center; justify-content: center; margin: 0 auto 12px;">
+                                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                                            <polyline points="22 4 12 14.01 9 11.01"/>
+                                        </svg>
+                                    </div>
+                                    <div style="font-weight: 700; font-size: 18px; color: var(--success-color);">Pre-Approved</div>
+                                </div>
+                                <div class="mock-card">
+                                    <div style="font-weight: 600; font-size: 16px; margin-bottom: 8px;">Priya Sharma</div>
+                                    <div style="font-size: 13px; color: var(--text-light); margin-bottom: 4px;">
+                                        <strong>Type:</strong> Guest
+                                    </div>
+                                    <div style="font-size: 13px; color: var(--text-light); margin-bottom: 4px;">
+                                        <strong>Visiting:</strong> A-101 (Mr. Raj Patel)
+                                    </div>
+                                    <div style="font-size: 13px; color: var(--text-light);">
+                                        <strong>Valid:</strong> Today, 3:00 PM - 5:00 PM
+                                    </div>
+                                </div>
+                                <div class="mock-btn mock-btn-success" style="margin-top: 20px; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                                    </svg>
+                                    Check In
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="screen-caption">QR Code Verified</div>
+                </div>
+            </div>
+
+            <h3>Method 2: Search by Name or Phone</h3>
+            <ol class="steps">
+                <li>Tap the <strong>Search</strong> icon</li>
+                <li>Enter the visitor's name, phone, or flat number</li>
+                <li>Find the matching visitor in the list</li>
+                <li>Tap on them to view details</li>
+                <li>Tap <strong>Check In</strong></li>
+            </ol>
+
+            <h3>Method 3: Find in Expected List</h3>
+            <ol class="steps">
+                <li>Look at the <strong>Expected Today</strong> section on your dashboard</li>
+                <li>Find the visitor's name</li>
+                <li>Tap their card to view details</li>
+                <li>Tap <strong>Check In</strong></li>
+            </ol>
+
+            <div class="info-box success">
+                <div class="info-box-title">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                    </svg>
+                    Pre-approved visitors are marked with a green badge
+                </div>
+                <p>These visitors have already been approved by the resident. You can check them in directly without calling the flat.</p>
+            </div>
+
+            <h2>Checking In a Walk-in Visitor (No Pre-Approval)</h2>
+            <p>When a visitor arrives without pre-approval:</p>
+
+            <ol class="steps">
+                <li>
+                    <strong>Tap "Manual Entry"</strong> or the "+" button
+                </li>
+                <li>
+                    <strong>Select visitor type:</strong>
+                    <ul>
+                        <li><strong>Guest</strong> – Personal visitor</li>
+                        <li><strong>Delivery</strong> – E-commerce, food delivery</li>
+                        <li><strong>Service</strong> – Plumber, electrician, etc.</li>
+                        <li><strong>Cab</strong> – Taxi, Uber, Ola</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>For Delivery/Service visitors:</strong> Select the company (Amazon, Swiggy, Urban Company, etc.) or tap "Other" and type the name
+                </li>
+                <li>
+                    <strong>Enter visitor details:</strong>
+                    <ul>
+                        <li>Name</li>
+                        <li>Phone number</li>
+                        <li>Flat number they're visiting</li>
+                        <li>Purpose of visit</li>
+                        <li>Vehicle number (if applicable)</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Tap "Request Approval"</strong>
+                </li>
+                <li>
+                    <strong>Wait for resident response</strong> – They will approve or deny within 1-2 minutes
+                </li>
+                <li>
+                    Once approved, the screen will show <strong>"Approved"</strong> – tap <strong>Check In</strong>
+                </li>
+            </ol>
+
+            <!-- Mock Screen: Walk-in Approval -->
+            <div class="screen-gallery">
+                <div class="screen-item">
+                    <div class="phone-mockup">
+                        <div class="phone-screen">
+                            <div class="mock-header mock-header-with-back">
+                                <svg class="mock-back-btn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M19 12H5M12 19l-7-7 7-7"/>
+                                </svg>
+                                <h3>Requesting Approval</h3>
+                            </div>
+                            <div class="mock-content" style="text-align: center; padding-top: 40px;">
+                                <div style="width: 60px; height: 60px; margin: 0 auto 20px; position: relative;">
+                                    <div style="width: 60px; height: 60px; border: 4px solid var(--bg-tertiary); border-top-color: var(--primary-color); border-radius: 50%; animation: spin 1s linear infinite;"></div>
+                                </div>
+                                <div style="font-weight: 600; font-size: 16px; margin-bottom: 8px;">Waiting for Resident</div>
+                                <div style="font-size: 13px; color: var(--text-light); margin-bottom: 24px;">A-101 (Mr. Raj Patel)</div>
+                                <div class="mock-card" style="text-align: left;">
+                                    <div class="mock-card-title">Rahul Kumar</div>
+                                    <div class="mock-card-subtitle" style="margin-top: 4px;">Personal Guest</div>
+                                    <div style="font-size: 12px; color: var(--text-light); margin-top: 8px;">Phone: 98765-43210</div>
+                                </div>
+                                <div style="font-size: 12px; color: var(--text-light); margin-top: 20px;">
+                                    Request sent 0:45 ago
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="screen-caption">Waiting for Approval</div>
+                </div>
+                <div class="screen-item">
+                    <div class="phone-mockup">
+                        <div class="phone-screen">
+                            <div class="mock-header" style="background: linear-gradient(135deg, var(--success-color), #34d399);">
+                                <h3>Entry Approved!</h3>
+                            </div>
+                            <div class="mock-content" style="text-align: center; padding-top: 24px;">
+                                <div style="width: 80px; height: 80px; border-radius: 50%; background: #d1fae5; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px;">
+                                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--success-color)" stroke-width="3">
+                                        <polyline points="20 6 9 17 4 12"/>
+                                    </svg>
+                                </div>
+                                <div style="font-weight: 600; font-size: 16px; margin-bottom: 24px;">Resident approved entry</div>
+                                <div class="mock-card" style="text-align: left;">
+                                    <div class="mock-card-title">Rahul Kumar</div>
+                                    <div class="mock-card-subtitle">Guest → A-101</div>
+                                </div>
+                                <div class="mock-btn mock-btn-success" style="margin-top: 24px; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                                    </svg>
+                                    Check In Now
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="screen-caption">Approved</div>
+                </div>
+            </div>
+
+            <div class="info-box warning">
+                <div class="info-box-title">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                        <line x1="12" y1="9" x2="12" y2="13"></line>
+                        <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                    </svg>
+                    If denied
+                </div>
+                <p>Politely inform the visitor that the resident has declined the visit. Do not allow entry.</p>
+            </div>
+
+            <h2>Checking Out Visitors</h2>
+            <p>When a visitor leaves the society:</p>
+
+            <ol class="steps">
+                <li>Go to <strong>Currently Inside</strong> section</li>
+                <li>Find the visitor by name or flat number</li>
+                <li>Tap on their card</li>
+                <li>Tap the <strong>Check Out</strong> button</li>
+                <li>Confirm the check-out</li>
+            </ol>
+
+            <div class="info-box info">
+                <div class="info-box-title">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" y1="16" x2="12" y2="12"></line>
+                        <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                    </svg>
+                    Duration tracking
+                </div>
+                <p>The app tracks how long each visitor stays. If someone has been inside for an unusually long time, you'll see an orange warning indicator.</p>
+            </div>
+
+            <h2>Overstaying Visitors</h2>
+            <p>Visitors who stay longer than expected are flagged:</p>
+            <ul>
+                <li><strong>Delivery/Cab</strong> – More than 1 hour</li>
+                <li><strong>Guest/Service</strong> – More than 4 hours</li>
+            </ul>
+
+            <p>When you see an <strong>orange "Overstaying" badge</strong>:</p>
+            <ol class="steps">
+                <li>Tap on the visitor card</li>
+                <li>Note how long they've been inside</li>
+                <li>Consider calling the resident to confirm they're still expected</li>
+                <li>When they leave, tap <strong>Check Out</strong></li>
+            </ol>
+
+            <h2>Quick Tips for Common Scenarios</h2>
+
+            <h3>Delivery Person with Parcel</h3>
+            <ol class="steps">
+                <li>Ask which flat the delivery is for</li>
+                <li>Enter as <strong>Delivery</strong> type and select the company</li>
+                <li>Request approval from resident</li>
+                <li>If approved, check them in</li>
+                <li>Most deliveries should be checked out within 15-30 minutes</li>
+            </ol>
+
+            <h3>Cab Picking Up a Resident</h3>
+            <ol class="steps">
+                <li>Enter as <strong>Cab</strong> type</li>
+                <li>Enter the flat number the cab is for</li>
+                <li>The resident will usually approve quickly</li>
+                <li>Check out when the cab leaves with the resident</li>
+            </ol>
+
+            <h3>Service Provider (Plumber/Electrician)</h3>
+            <ol class="steps">
+                <li>Enter as <strong>Service</strong> type</li>
+                <li>Select or type the company name</li>
+                <li>Note the purpose (e.g., "AC repair")</li>
+                <li>These visits may last 1-4 hours</li>
+            </ol>
+
+            <h3>Emergency Vehicles</h3>
+            <ol class="steps">
+                <li>Allow immediate entry for ambulances, fire trucks, police</li>
+                <li>Record entry after they pass through</li>
+                <li>Select <strong>Other</strong> as visitor type and note "Emergency"</li>
+                <li>Inform your supervisor and society admin</li>
+            </ol>
+
+            <h2>Contacting Residents</h2>
+            <p>If you need to call a resident:</p>
+            <ol class="steps">
+                <li>On the visitor's approval request screen, tap <strong>Call Resident</strong></li>
+                <li>The app will connect you directly</li>
+                <li>Explain who is at the gate and ask for approval</li>
+            </ol>
+
+            <h2>Shift Handover</h2>
+            <p>At the end of your shift:</p>
+            <ol class="steps">
+                <li>Go to <strong>Currently Inside</strong> and note any visitors still present</li>
+                <li>Inform the next guard about any ongoing situations</li>
+                <li>Log out by going to <strong>Settings</strong> → <strong>Sign Out</strong></li>
+            </ol>
+
+            <h2>Troubleshooting</h2>
+
+            <h3>App is slow or not loading</h3>
+            <ul>
+                <li>Check your internet connection</li>
+                <li>Close and reopen the app</li>
+                <li>If problem persists, contact your supervisor</li>
+            </ul>
+
+            <h3>QR code won't scan</h3>
+            <ul>
+                <li>Make sure the QR code is not blurry or damaged</li>
+                <li>Try adjusting the lighting or distance</li>
+                <li>Use "Search" to find the visitor manually</li>
+            </ul>
+
+            <h3>Resident not responding to approval request</h3>
+            <ul>
+                <li>Wait 2 minutes</li>
+                <li>Tap "Call Resident" to phone them directly</li>
+                <li>If still no response, ask visitor to contact the resident themselves</li>
+            </ul>
+
+            <div class="page-nav">
+                <a href="resident-guide.html" class="prev">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="15 18 9 12 15 6"></polyline>
+                    </svg>
+                    Resident Guide
+                </a>
+                <a href="admin-guide.html" class="next">
+                    Admin Guide
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </a>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('open');
+        }
+    </script>
+</body>
+</html>
