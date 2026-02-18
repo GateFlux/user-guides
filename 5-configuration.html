@@ -354,13 +354,44 @@ Content-Type: application/json
             <h2>Integration Configuration</h2>
 
             <h3>SMS Gateway</h3>
-            <p><strong>Twilio:</strong></p>
+            <p><strong>Twilio (Basic SMS):</strong></p>
             <div class="code-block">
                 <span class="code-label">ENV</span>
                 <pre><code>SMS_PROVIDER=twilio
 TWILIO_SID=ACxxxxxxxxxx
 TWILIO_TOKEN=your_auth_token
 TWILIO_FROM=+1234567890</code></pre>
+            </div>
+
+            <h4>Twilio Verify API (OTP Authentication)</h4>
+            <p>For resident OTP login, GateFlux uses the Twilio Verify API. This provides secure, managed OTP delivery with automatic expiration and rate limiting.</p>
+            <div class="code-block">
+                <span class="code-label">ENV</span>
+                <pre><code># Twilio Verify API for OTP
+TWILIO_SID=ACxxxxxxxxxx
+TWILIO_AUTH_TOKEN=your_auth_token
+TWILIO_VERIFY_SID=VAxxxxxxxxxx
+TWILIO_FROM=+1234567890</code></pre>
+            </div>
+            <p>To set up Twilio Verify:</p>
+            <ol class="steps">
+                <li>Log in to your <a href="https://console.twilio.com/" target="_blank">Twilio Console</a></li>
+                <li>Navigate to <strong>Verify</strong> → <strong>Services</strong></li>
+                <li>Click <strong>Create new Service</strong></li>
+                <li>Name it (e.g., "GateFlux OTP")</li>
+                <li>Copy the <strong>Service SID</strong> (starts with VA) to <code>TWILIO_VERIFY_SID</code></li>
+            </ol>
+
+            <div class="info-box info">
+                <div class="info-box-title">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" y1="16" x2="12" y2="12"></line>
+                        <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                    </svg>
+                    OTP Availability
+                </div>
+                <p>OTP login is available <strong>only for residents, owners, and tenants</strong>. Admins and security staff must use email/password authentication for security reasons.</p>
             </div>
 
             <p><strong>MSG91:</strong></p>

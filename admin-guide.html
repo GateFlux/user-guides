@@ -48,6 +48,7 @@
                 </div>
                 <div class="nav-section">
                     <div class="nav-section-title">Help</div>
+                    <a href="#audit-logs" class="nav-link">Audit Logs</a>
                     <a href="6-troubleshooting.html" class="nav-link">Troubleshooting</a>
                     <a href="7-faq.html" class="nav-link">FAQ</a>
                 </div>
@@ -461,13 +462,84 @@
                 <li>Click <strong>Send Invite</strong></li>
             </ol>
 
+            <h2 id="audit-logs">Audit Logs & Activity Tracking</h2>
+            <p>GateFlux maintains comprehensive audit logs for accountability and security. Every important action is recorded automatically.</p>
+
+            <h3>What Gets Logged</h3>
+            <p>The system automatically tracks:</p>
+            <ul>
+                <li><strong>User Activities</strong> – Logins, logouts, failed login attempts, password changes</li>
+                <li><strong>Visitor Records</strong> – Check-ins, check-outs, approvals, rejections</li>
+                <li><strong>Financial Actions</strong> – Invoices created, payments recorded, refunds processed</li>
+                <li><strong>Administrative Changes</strong> – Resident additions/removals, unit ownership transfers, staff changes</li>
+                <li><strong>Security Events</strong> – Blacklist updates, vehicle registrations, guard device registrations</li>
+                <li><strong>Configuration Changes</strong> – Society settings, billing configuration, notification preferences</li>
+            </ul>
+
+            <h3>Viewing Activity Logs</h3>
+            <ol class="steps">
+                <li>Go to <strong>Analytics</strong> in the sidebar</li>
+                <li>Click <strong>View All Activity</strong> at the bottom of the Recent Activity section</li>
+                <li>Use filters to narrow down:
+                    <ul>
+                        <li><strong>Search</strong> – Find specific activities by keyword</li>
+                        <li><strong>Action Type</strong> – Filter by create, update, delete, login, etc.</li>
+                        <li><strong>Severity</strong> – Info, warning, or critical events</li>
+                        <li><strong>Date Range</strong> – Specify start and end dates</li>
+                    </ul>
+                </li>
+            </ol>
+
+            <div class="info-box info">
+                <div class="info-box-title">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" y1="16" x2="12" y2="12"></line>
+                        <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                    </svg>
+                    Access Control
+                </div>
+                <p>Audit logs are only visible to Society Admins and Committee Members with the <strong>audit.logs_view</strong> permission. Regular residents cannot access these logs.</p>
+            </div>
+
+            <h3>Exporting Audit Logs</h3>
+            <ol class="steps">
+                <li>Navigate to the Activity Log page</li>
+                <li>Apply any filters you need (date range, action type, etc.)</li>
+                <li>Click the <strong>Export</strong> button in the top right</li>
+                <li>Download as CSV for spreadsheet analysis</li>
+            </ol>
+
+            <h3>Security Events</h3>
+            <p>Pay special attention to these events:</p>
+            <ul>
+                <li><strong>Failed login attempts</strong> – May indicate unauthorized access attempts</li>
+                <li><strong>Permission denied events</strong> – Users trying to access restricted features</li>
+                <li><strong>Blacklist changes</strong> – Track who was added or removed from the blacklist</li>
+                <li><strong>Admin role changes</strong> – Monitor privilege escalations</li>
+            </ul>
+
+            <div class="info-box warning">
+                <div class="info-box-title">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                        <line x1="12" y1="9" x2="12" y2="13"></line>
+                        <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                    </svg>
+                    Tamper Protection
+                </div>
+                <p>Audit logs cannot be edited or deleted through the application. Each log entry includes a cryptographic checksum to detect any unauthorized modifications.</p>
+            </div>
+
             <h2>Best Practices</h2>
             <ul>
                 <li><strong>Keep resident data updated</strong> – Remove moved-out tenants promptly</li>
                 <li><strong>Review analytics weekly</strong> – Identify security patterns</li>
+                <li><strong>Review audit logs regularly</strong> – Check for suspicious activities and failed logins</li>
                 <li><strong>Follow up on overstaying visitors</strong> – Check daily reports</li>
                 <li><strong>Respond to complaints quickly</strong> – Aim for first response within 24 hours</li>
                 <li><strong>Post regular notices</strong> – Keep residents informed about society matters</li>
+                <li><strong>Export audit logs monthly</strong> – Keep offline records for compliance</li>
             </ul>
 
             <div class="page-nav">
