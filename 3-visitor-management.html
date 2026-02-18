@@ -434,6 +434,100 @@ Content-Type: application/json
 }</code></pre>
             </div>
 
+            <h2>Visitor Media API</h2>
+            <p>Capture and manage visitor photos and ID proofs for enhanced security.</p>
+
+            <h3>Upload Visitor Photo/ID</h3>
+            <div class="code-block">
+                <span class="code-label">HTTP</span>
+                <pre><code>POST /api/v1/visitors/{visitor_id}/media
+Authorization: Bearer &lt;guard_token&gt;
+Content-Type: multipart/form-data
+
+file: &lt;image_file&gt;
+type: "photo" | "id_front" | "id_back"
+id_type: "aadhaar" | "pan" | "driving_license" | "passport" | "voter_id" | "other"
+id_number: "XXXX-XXXX-1234" (optional, will be masked)</code></pre>
+            </div>
+
+            <h4>Response</h4>
+            <div class="code-block">
+                <span class="code-label">JSON</span>
+                <pre><code>{
+    "success": true,
+    "data": {
+        "type": "photo",
+        "url": "/visitor-media/serve?path=...&signature=...",
+        "uploaded_at": "2025-02-18T12:30:00Z"
+    }
+}</code></pre>
+            </div>
+
+            <h3>Get Visitor Media (Signed URLs)</h3>
+            <div class="code-block">
+                <span class="code-label">HTTP</span>
+                <pre><code>GET /api/v1/visitors/{visitor_id}/media
+Authorization: Bearer &lt;token&gt;</code></pre>
+            </div>
+
+            <h4>Response</h4>
+            <div class="code-block">
+                <span class="code-label">JSON</span>
+                <pre><code>{
+    "success": true,
+    "data": {
+        "photo_url": "https://...?signature=...&expires=...",
+        "id_front_url": "https://...?signature=...&expires=...",
+        "id_type": "aadhaar",
+        "id_number_masked": "XXXX-XXXX-1234"
+    }
+}</code></pre>
+            </div>
+
+            <h3>Delete Visitor Media</h3>
+            <div class="code-block">
+                <span class="code-label">HTTP</span>
+                <pre><code>DELETE /api/v1/visitors/{visitor_id}/media
+Authorization: Bearer &lt;admin_token&gt;
+Content-Type: application/json
+
+{
+    "reason": "data_retention" | "gdpr_request" | "manual_deletion"
+}</code></pre>
+            </div>
+
+            <h3>Media Constraints</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Constraint</th>
+                        <th>Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Max file size</td><td>2 MB</td></tr>
+                    <tr><td>Allowed formats</td><td>JPEG, PNG, WebP</td></tr>
+                    <tr><td>Signed URL expiry</td><td>10 minutes</td></tr>
+                    <tr><td>Storage</td><td>AES-256 encrypted</td></tr>
+                </tbody>
+            </table>
+
+            <div class="info-box info">
+                <div class="info-box-title">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                    </svg>
+                    Security Features
+                </div>
+                <ul>
+                    <li><strong>Signed URLs:</strong> All media access uses time-limited signed URLs that expire after 10 minutes</li>
+                    <li><strong>Audit Logging:</strong> Every media access is logged with user ID, IP address, and timestamp</li>
+                    <li><strong>ID Number Masking:</strong> ID numbers are automatically masked (only last 4 digits visible)</li>
+                    <li><strong>Role-based Access:</strong> Only authorized roles (security, admin) can view captured media</li>
+                </ul>
+            </div>
+
             <h2>Security Best Practices</h2>
             <div class="info-box info">
                 <div class="info-box-title">Best Practices for Security</div>
