@@ -1,10 +1,10 @@
 /* GateFlux Documentation Styles */
 :root {
-    --primary-color: #2563eb;
-    --primary-dark: #1e40af;
-    --primary-light: #3b82f6;
+    --primary-color: #6366f1;
+    --primary-dark: #4f46e5;
+    --primary-light: #818cf8;
     --secondary-color: #0f172a;
-    --accent-color: #06b6d4;
+    --accent-color: #a855f7;
     --success-color: #10b981;
     --warning-color: #f59e0b;
     --error-color: #ef4444;
@@ -183,7 +183,7 @@ a:hover {
 
 /* Introduction box */
 .intro-box {
-    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #a855f7 100%);
     color: white;
     padding: 32px;
     border-radius: var(--radius-lg);
@@ -578,10 +578,10 @@ kbd {
 .hljs-string { color: #c3e88d; }
 .hljs-number { color: #f78c6c; }
 .hljs-comment { color: #676e95; font-style: italic; }
-.hljs-function { color: #82aaff; }
-.hljs-class { color: #ffcb6b; }
+.hljs-function { color: #a5b4fc; }
+.hljs-class { color: #c4b5fd; }
 .hljs-variable { color: #f07178; }
-.hljs-attr { color: #ffcb6b; }
+.hljs-attr { color: #c4b5fd; }
 
 /* ===== MOCK SCREEN STYLES ===== */
 
@@ -758,8 +758,8 @@ kbd {
 }
 
 .mock-badge-inside {
-    background: #dbeafe;
-    color: #1e40af;
+    background: #ede9fe;
+    color: #4f46e5;
 }
 
 /* Stats Grid */

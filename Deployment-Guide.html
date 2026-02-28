@@ -6,8 +6,8 @@
     <title>GateFlux Deployment &amp; Configuration Guide</title>
     <style>
         :root {
-            --primary: #1e40af;
-            --primary-light: #3b82f6;
+            --primary: #4f46e5;
+            --primary-light: #818cf8;
             --bg: #f8fafc;
             --card-bg: #ffffff;
             --text: #1e293b;
@@ -183,8 +183,8 @@
         }
 
         .badge-file {
-            background: #dbeafe;
-            color: #1e40af;
+            background: #ede9fe;
+            color: #4f46e5;
         }
 
         ul.checklist {
@@ -864,6 +864,38 @@ cd android
             <h4>Metro Bundler Issues</h4>
             <pre><code># Reset Metro cache
 npx react-native start --reset-cache</code></pre>
+        </section>
+
+        <hr>
+
+        <!-- Local Demo Environment -->
+        <section id="demo-env" class="section">
+            <h2>Local Demo Environment</h2>
+            <p>When running locally (<code>APP_ENV=local</code>), seeding creates a single demo society with realistic data for development and testing.</p>
+
+            <pre><code>php artisan migrate:fresh --seed</code></pre>
+
+            <h3>Demo Society</h3>
+            <table>
+                <tr><th>Field</th><th>Value</th></tr>
+                <tr><td>Name</td><td>Heritage Housing Society</td></tr>
+                <tr><td>Subdomain</td><td><code>heritage</code></td></tr>
+                <tr><td>Plan</td><td>Professional</td></tr>
+            </table>
+
+            <h3>Demo Credentials</h3>
+            <table>
+                <tr><th>Role</th><th>Email</th><th>Password</th></tr>
+                <tr><td>Society Admin</td><td><code>admin@heritage.test</code></td><td><code>password</code></td></tr>
+                <tr><td>Guard 1</td><td><code>guard1@heritage.test</code></td><td><code>password</code></td></tr>
+                <tr><td>Guard 2</td><td><code>guard2@heritage.test</code></td><td><code>password</code></td></tr>
+                <tr><td>Guard 3</td><td><code>guard3@heritage.test</code></td><td><code>password</code></td></tr>
+                <tr><td>Resident</td><td><code>vikram-singh@heritage.test</code></td><td><code>password</code></td></tr>
+                <tr><td>Resident</td><td><code>meera-patel@heritage.test</code></td><td><code>password</code></td></tr>
+                <tr><td>Resident</td><td><code>amit-joshi@heritage.test</code></td><td><code>password</code></td></tr>
+            </table>
+
+            <p>On the login screen, enter <code>heritage</code> as the subdomain to access the demo society.</p>
         </section>
 
         <hr>
