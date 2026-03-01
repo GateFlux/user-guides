@@ -5,12 +5,12 @@ export default function Configuration() {
     <DocsLayout>
       <main className="prose mx-auto py-8">
         <nav className="mb-4 text-sm text-gray-500 flex items-center gap-2">
-          <a href="/" className="text-blue-600 hover:underline">Docs</a>
+          <a href="/" className="text-primary-600 hover:underline">Docs</a>
           <span>›</span>
           <span>Configuration</span>
         </nav>
         
-      <div className="bg-blue-50 border border-blue-200 rounded p-6 mb-6">
+      <div className="bg-primary-50 border border-primary-200 rounded p-6 mb-6">
         <h1 className="text-2xl font-bold mb-2">Configuration Guide</h1>
         <p>
           Configure GateFlux for your society's specific requirements including

@@ -5,12 +5,12 @@ export default function SecurityGuardGuide() {
     <DocsLayout>
       <main className="prose mx-auto py-8">
         <nav className="mb-4 text-sm text-gray-500 flex items-center gap-2">
-          <a href="/" className="text-blue-600 hover:underline">Docs</a>
+          <a href="/" className="text-primary-600 hover:underline">Docs</a>
           <span>›</span>
           <span>Security Guard Guide</span>
         </nav>
 
-        <div className="bg-blue-50 border border-blue-200 rounded p-6 mb-6">
+        <div className="bg-primary-50 border border-primary-200 rounded p-6 mb-6">
           <h1 className="text-2xl font-bold mb-2">Security Guard Guide</h1>
           <p>Learn how to manage visitor entry, check-ins, check-outs, and maintain gate security using GateFlux.</p>
         </div>
@@ -49,7 +49,7 @@ export default function SecurityGuardGuide() {
             </div>
           </div>
           <div className="flex gap-2 mb-4">
-            <button className="flex-1 bg-blue-100 text-blue-700 rounded px-3 py-2 flex items-center gap-2 justify-center">
+            <button className="flex-1 bg-primary-100 text-primary-700 rounded px-3 py-2 flex items-center gap-2 justify-center">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
               Scan QR
             </button>
@@ -181,7 +181,7 @@ export default function SecurityGuardGuide() {
         <div className="bg-white border rounded shadow p-4 max-w-md mx-auto mb-4">
           <div className="font-bold text-lg mb-2">Requesting Approval</div>
           <div className="text-center mb-4">
-            <div className="mx-auto mb-2 w-16 h-16 rounded-full border-4 border-blue-100 border-t-blue-500 animate-spin"></div>
+            <div className="mx-auto mb-2 w-16 h-16 rounded-full border-4 border-primary-100 border-t-primary-500 animate-spin"></div>
             <div className="font-semibold">Waiting for Resident</div>
             <div className="text-xs text-gray-500 mb-2">A-101 (Mr. Raj Patel)</div>
             <div className="bg-gray-50 border rounded p-2 mb-2 text-left">
@@ -212,7 +212,7 @@ export default function SecurityGuardGuide() {
         <div className="text-center text-xs text-gray-400 mt-2">Mock design: Walk-in Approval</div>
       </div>
 
-      <div className="bg-yellow-50 border border-yellow-200 rounded p-4 mb-6">
+      <div className="bg-accent-50 border border-accent-200 rounded p-4 mb-6">
         <div className="font-semibold mb-2 flex items-center gap-2">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
           If denied
@@ -256,7 +256,7 @@ export default function SecurityGuardGuide() {
         </div>
         <div className="bg-white border rounded shadow p-4 max-w-md mx-auto">
           <div className="font-bold text-lg mb-2">ID Proof</div>
-          <div className="bg-gradient-to-br from-blue-900 to-blue-600 rounded-lg mb-2 p-4 text-white">
+          <div className="bg-gradient-to-br from-primary-900 to-primary-600 rounded-lg mb-2 p-4 text-white">
             <div className="text-xs uppercase mb-1">Govt. of India</div>
             <div className="font-bold text-sm mb-2">Aadhaar Card</div>
             <div className="flex items-center gap-2 mb-1">
@@ -284,7 +284,7 @@ export default function SecurityGuardGuide() {
         <div className="text-center text-xs text-gray-400 mt-2">Mock design: Photo & ID Proof Capture</div>
       </div>
 
-      <div className="bg-blue-50 border border-blue-200 rounded p-4 mb-6">
+      <div className="bg-primary-50 border border-primary-200 rounded p-4 mb-6">
         <div className="font-semibold mb-2 flex items-center gap-2">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
           Security & Privacy
@@ -319,7 +319,7 @@ export default function SecurityGuardGuide() {
                 <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7M3 21l7-7"/></svg>
               </div>
             </div>
-            <div className="flex-1 aspect-square bg-gradient-to-br from-blue-900 to-blue-600 rounded-lg flex flex-col items-center justify-center relative overflow-hidden">
+            <div className="flex-1 aspect-square bg-gradient-to-br from-primary-900 to-primary-600 rounded-lg flex flex-col items-center justify-center relative overflow-hidden">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" strokeWidth="1.5"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="6" y1="9" x2="18" y2="9"/><line x1="6" y1="13" x2="14" y2="13"/></svg>
               <div className="text-[9px] text-white/60 mt-1">Aadhaar Card</div>
               <div className="absolute top-1 right-1 bg-black/40 rounded px-1 py-0.5">
@@ -345,7 +345,7 @@ export default function SecurityGuardGuide() {
         <li>Confirm the check-out</li>
       </ol>
 
-      <div className="bg-blue-50 border border-blue-200 rounded p-4 mb-6">
+      <div className="bg-primary-50 border border-primary-200 rounded p-4 mb-6">
         <div className="font-semibold mb-2 flex items-center gap-2">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
           Duration tracking
@@ -435,11 +435,11 @@ export default function SecurityGuardGuide() {
       </ul>
 
       <nav className="flex justify-between mt-8">
-        <a href="/resident-guide" className="flex items-center gap-2 text-blue-600 hover:underline">
+        <a href="/resident-guide" className="flex items-center gap-2 text-primary-600 hover:underline">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
           Resident Guide
         </a>
-        <a href="/admin-guide" className="flex items-center gap-2 text-blue-600 hover:underline">
+        <a href="/admin-guide" className="flex items-center gap-2 text-primary-600 hover:underline">
           Admin Guide
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
         </a>

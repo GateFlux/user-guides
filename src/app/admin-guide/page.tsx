@@ -5,12 +5,12 @@ export default function AdminGuide() {
     <DocsLayout>
       <main className="prose mx-auto py-8">
         <nav className="mb-4 text-sm text-gray-500 flex items-center gap-2">
-          <a href="/" className="text-blue-600 hover:underline">Docs</a>
+          <a href="/" className="text-primary-600 hover:underline">Docs</a>
           <span>›</span>
           <span>Admin Guide</span>
         </nav>
 
-        <div className="bg-blue-50 border border-blue-200 rounded p-6 mb-6">
+        <div className="bg-primary-50 border border-primary-200 rounded p-6 mb-6">
           <h1 className="text-2xl font-bold mb-2">Admin Guide</h1>
           <p>Complete guide for Society Admins, Committee Members, and Managers to configure and manage GateFlux.</p>
         </div>
@@ -21,7 +21,7 @@ export default function AdminGuide() {
         <li>Enter your email and password</li>
         <li>You'll see the Admin Dashboard with society overview</li>
       </ol>
-      <div className="bg-blue-50 border border-blue-200 rounded p-4 mb-6">
+      <div className="bg-primary-50 border border-primary-200 rounded p-4 mb-6">
         <div className="font-semibold mb-2 flex items-center gap-2">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
           First-time setup
@@ -42,15 +42,15 @@ export default function AdminGuide() {
       <div className="mockup mb-8">
         <div className="bg-white border rounded shadow p-4 max-w-3xl mx-auto">
           <div className="flex justify-between items-center mb-4">
-            <div className="font-bold text-xl"><span className="text-blue-700">Gate</span>Flux Admin</div>
+            <div className="font-bold text-xl"><span className="text-primary-700">Gate</span>Flux Admin</div>
             <div className="flex items-center gap-2">
               <span className="text-gray-700">Green Valley Society</span>
-              <span className="w-7 h-7 rounded-full bg-gradient-to-br from-blue-600 to-yellow-500 flex items-center justify-center text-white text-xs font-bold">AD</span>
+              <span className="w-7 h-7 rounded-full bg-gradient-to-br from-primary-600 to-accent-500 flex items-center justify-center text-white text-xs font-bold">AD</span>
             </div>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
             <div className="bg-white rounded-lg p-4 text-center shadow">
-              <div className="text-2xl font-bold text-blue-700">47</div>
+              <div className="text-2xl font-bold text-primary-700">47</div>
               <div className="text-xs text-gray-500">Today's Visitors</div>
             </div>
             <div className="bg-white rounded-lg p-4 text-center shadow">
@@ -58,7 +58,7 @@ export default function AdminGuide() {
               <div className="text-xs text-gray-500">Currently Inside</div>
             </div>
             <div className="bg-white rounded-lg p-4 text-center shadow">
-              <div className="text-2xl font-bold text-yellow-600">3</div>
+              <div className="text-2xl font-bold text-accent-600">3</div>
               <div className="text-xs text-gray-500">Overstaying</div>
             </div>
             <div className="bg-white rounded-lg p-4 text-center shadow">
@@ -74,7 +74,7 @@ export default function AdminGuide() {
               <span className="ml-auto text-xs text-gray-400">2 min ago</span>
             </div>
             <div className="flex items-center py-2">
-              <span className="w-2 h-2 rounded-full bg-blue-600 mr-2"></span>
+              <span className="w-2 h-2 rounded-full bg-primary-600 mr-2"></span>
               <span className="text-xs">Walk-in approved for A-101</span>
               <span className="ml-auto text-xs text-gray-400">5 min ago</span>
             </div>
@@ -111,7 +111,7 @@ export default function AdminGuide() {
         <div className="bg-white border rounded shadow p-4 max-w-3xl mx-auto">
           <div className="flex justify-between items-center mb-4">
             <div className="font-bold text-base">Residents (156)</div>
-            <button className="bg-blue-600 text-white px-4 py-2 rounded text-xs font-semibold">+ Add Resident</button>
+            <button className="bg-primary-600 text-white px-4 py-2 rounded text-xs font-semibold">+ Add Resident</button>
           </div>
           <table className="w-full text-xs border rounded">
             <thead>
@@ -150,7 +150,7 @@ export default function AdminGuide() {
                 <td>C-302</td>
                 <td>98765-43213</td>
                 <td>Owner</td>
-                <td><span className="bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-xs">Pending</span></td>
+                <td><span className="bg-accent-100 text-accent-800 px-2 py-1 rounded text-xs">Pending</span></td>
               </tr>
             </tbody>
           </table>
@@ -174,7 +174,7 @@ export default function AdminGuide() {
         <li>Click <strong>Delete</strong> or <strong>Deactivate</strong></li>
         <li>Confirm the action</li>
       </ol>
-      <div className="bg-yellow-50 border border-yellow-200 rounded p-4 mb-6">
+      <div className="bg-accent-50 border border-accent-200 rounded p-4 mb-6">
         <div className="font-semibold mb-2 flex items-center gap-2">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
           Deactivate vs Delete
@@ -378,7 +378,7 @@ export default function AdminGuide() {
           </ul>
         </li>
       </ol>
-      <div className="bg-blue-50 border border-blue-200 rounded p-4 mb-6">
+      <div className="bg-primary-50 border border-primary-200 rounded p-4 mb-6">
         <div className="font-semibold mb-2 flex items-center gap-2">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
           Access Control
@@ -402,7 +402,7 @@ export default function AdminGuide() {
         <li><strong>Blacklist changes</strong> – Track who was added or removed from the blacklist</li>
         <li><strong>Admin role changes</strong> – Monitor privilege escalations</li>
       </ul>
-      <div className="bg-yellow-50 border border-yellow-200 rounded p-4 mb-6">
+      <div className="bg-accent-50 border border-accent-200 rounded p-4 mb-6">
         <div className="font-semibold mb-2 flex items-center gap-2">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
           Tamper Protection

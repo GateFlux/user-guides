@@ -1,15 +1,13 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
+import Image from "next/image";
+import Link from "next/link";
 import "./globals.css";
+import BackToTop from "./BackToTop";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  variable: "--font-sans",
 });
 
 export const metadata: Metadata = {
@@ -38,16 +36,23 @@ export default function RootLayout({
         <meta name="theme-color" content="#1c153e" />
         <meta name="msapplication-TileColor" content="#1c153e" />
         <meta name="msapplication-config" content="/favicon/browserconfig.xml" />
-        <link rel="preload" href="/logo.svg" as="image" />
+        <link rel="preload" href="/logo-dark.svg" as="image" />
       </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <header style={{display:'flex',alignItems:'center',gap:'1rem',padding:'1.5rem 2rem 1rem'}}>
-          <img src="/logo.svg" alt="GateFlux Logo" style={{height:'2.5rem',width:'auto'}} />
-          <span style={{fontWeight:700,fontSize:'1.5rem',letterSpacing:'0.02em'}}>GateFlux User Guides</span>
+      <body className={`${inter.variable} antialiased`}>
+        {/* Fixed floating header */}
+        <header className="fixed top-0 left-0 right-0 z-50 flex h-16 items-center gap-3 border-b border-white/10 bg-primary-900/95 px-6 backdrop-blur-md shadow-enterprise">
+          <Link href="/" className="flex items-center gap-3 hover:opacity-90 transition-opacity">
+            <Image src="/logo.svg" alt="GateFlux" width={128} height={32} style={{ height: '2rem', width: 'auto' }} priority />
+            <span className="font-bold text-lg tracking-wide text-white">User Guides</span>
+          </Link>
         </header>
-        {children}
+
+        {/* Push content below fixed header */}
+        <div className="pt-16">
+          {children}
+        </div>
+
+        <BackToTop />
       </body>
     </html>
   );

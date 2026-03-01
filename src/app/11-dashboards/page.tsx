@@ -6,12 +6,12 @@ export default function Dashboards() {
     <DocsLayout>
       <main className="max-w-3xl mx-auto py-8 px-4">
         <nav className="mb-4 text-sm text-gray-500 flex items-center gap-2">
-          <a href="/" className="text-blue-600 hover:underline">Docs</a>
+          <a href="/" className="text-primary-600 hover:underline">Docs</a>
           <span>›</span>
           <span>Role-Based Dashboards</span>
         </nav>
 
-        <div className="bg-gradient-to-br from-blue-900 via-indigo-900 to-yellow-500 text-white rounded-2xl p-6 mb-8 border-l-4 border-yellow-400">
+        <div className="bg-gradient-to-br from-primary-900 via-primary-900 to-accent-500 text-white rounded-2xl p-6 mb-8 border-l-4 border-accent-400">
           <h1 className="text-3xl font-bold mb-2">Role-Based Dashboards</h1>
           <p className="opacity-90">Dynamic navigation and dashboards tailored to each user's role and capabilities.</p>
         </div>
@@ -70,95 +70,21 @@ export default function Dashboards() {
           </div>
         </div>
 
-        <h2 className="text-xl font-bold mt-10 mb-3">Dynamic Navigation API</h2>
-
-        <h3 className="text-lg font-semibold mt-8 mb-2">Get Navigation Menu</h3>
-        <p>Retrieve navigation menu filtered by user's capabilities:</p>
-        <div className="code-block mb-6">
-          <span className="code-label">HTTP</span>
-          <pre className="bg-gray-900 text-gray-100 rounded p-4 overflow-x-auto text-sm"><code>{`GET /api/v1/me/navigation\nAuthorization: Bearer <token>`}</code></pre>
-        </div>
-        <p className="mb-2 font-semibold">Response:</p>
-        <div className="code-block mb-6">
-          <span className="code-label">JSON</span>
-          <pre className="bg-gray-900 text-gray-100 rounded p-4 overflow-x-auto text-xs"><code>{`{\n    "success": true,\n    "data": {\n        "primary": [\n            {\n                "key": "dashboard",\n                "label": "Dashboard",\n                "icon": "home",\n                "route": "/dashboard"\n            },\n            {\n                "key": "visitors",\n                "label": "Visitors",\n                "icon": "users",\n                "route": "/visitors"\n            }\n        ],\n        "secondary": [\n            {\n                "key": "governance",\n                "label": "Governance",\n                "icon": "vote",\n                "route": "/governance",\n                "children": [\n                    {"key": "agms", "label": "AGMs", "route": "/governance/agms"},\n                    {"key": "voting", "label": "Voting", "route": "/governance/voting"}\n                ]\n            }\n        ],\n        "admin": [\n            {\n                "key": "settings",\n                "label": "Settings",\n                "icon": "settings",\n                "route": "/settings"\n            }\n        ]\n    }\n}`}</code></pre>
-        </div>
-
-        <h3 className="text-lg font-semibold mt-8 mb-2">Get Quick Actions</h3>
-        <p>Role-specific quick action buttons:</p>
-        <div className="code-block mb-6">
-          <span className="code-label">HTTP</span>
-          <pre className="bg-gray-900 text-gray-100 rounded p-4 overflow-x-auto text-sm"><code>{`GET /api/v1/me/quick-actions\nAuthorization: Bearer <token>`}</code></pre>
-        </div>
-        <p className="mb-2 font-semibold">Example Response (Treasurer):</p>
-        <div className="code-block mb-6">
-          <span className="code-label">JSON</span>
-          <pre className="bg-gray-900 text-gray-100 rounded p-4 overflow-x-auto text-xs"><code>{`{\n    "success": true,\n    "data": [\n        {\n            "key": "approve_expenses",\n            "label": "Pending Approvals",\n            "icon": "check-circle",\n            "route": "/expenses/pending",\n            "badge": 3\n        },\n        {\n            "key": "generate_invoices",\n            "label": "Generate Invoices",\n            "icon": "file-text",\n            "route": "/invoices/generate"\n        },\n        {\n            "key": "view_collections",\n            "label": "View Collections",\n            "icon": "dollar-sign",\n            "route": "/payments"\n        }\n    ]\n}`}</code></pre>
-        </div>
-
-        <h3 className="text-lg font-semibold mt-8 mb-2">Get Dashboard Widgets</h3>
-        <div className="code-block mb-6">
-          <span className="code-label">HTTP</span>
-          <pre className="bg-gray-900 text-gray-100 rounded p-4 overflow-x-auto text-sm"><code>{`GET /api/v1/me/dashboard-widgets\nAuthorization: Bearer <token>`}</code></pre>
-        </div>
-
-        <h3 className="text-lg font-semibold mt-8 mb-2">Complete UI Configuration</h3>
-        <p>Get all UI configuration in a single call:</p>
-        <div className="code-block mb-6">
-          <span className="code-label">HTTP</span>
-          <pre className="bg-gray-900 text-gray-100 rounded p-4 overflow-x-auto text-sm"><code>{`GET /api/v1/me/ui-config\nAuthorization: Bearer <token>`}</code></pre>
-        </div>
-        <p>Returns navigation, quick actions, and widgets combined.</p>
+        <h2 className="text-xl font-bold mt-10 mb-3">Dynamic Navigation</h2>
+        <p className="mb-6">The GateFlux navigation menu automatically adapts based on your role. When you log in, the app shows only the modules and actions you have permission to access. A security guard sees gate and visitor management options; a treasurer sees finance and collection modules; a resident sees dues, visitors, and complaints.</p>
 
         <h2 className="text-xl font-bold mt-10 mb-3">Executive Dashboard</h2>
-        <p>The President has access to a specialized executive dashboard with aggregated KPIs:</p>
-        <div className="code-block mb-6">
-          <span className="code-label">HTTP</span>
-          <pre className="bg-gray-900 text-gray-100 rounded p-4 overflow-x-auto text-sm"><code>{`GET /api/v1/executive/dashboard\nAuthorization: Bearer <token>`}</code></pre>
-        </div>
-        <p className="mb-2 font-semibold">Response:</p>
-        <div className="code-block mb-6">
-          <span className="code-label">JSON</span>
-          <pre className="bg-gray-900 text-gray-100 rounded p-4 overflow-x-auto text-xs"><code>{`{\n    "success": true,\n    "data": {\n        "financial_summary": {\n            "revenue": {\n                "this_month": 450000,\n                "last_month": 420000,\n                "change_percent": 7.1\n            },\n            "collections": {\n                "this_month": 380000,\n                "rate": 84.4\n            },\n            "outstanding": {\n                "total": 250000,\n                "overdue": 85000,\n                "overdue_percent": 34.0\n            },\n            "net_cashflow": 120000\n        },\n        "pending_approvals": {\n            "expenses": {\n                "count": 3,\n                "high_value_items": [\n                    {\n                        "id": "uuid",\n                        "description": "CCTV System Upgrade",\n                        "amount": 125000\n                    }\n                ]\n            },\n            "total_items": 5\n        },\n        "critical_alerts": {\n            "alerts": [\n                {\n                    "type": "sla_breach",\n                    "severity": "high",\n                    "message": "2 complaints have breached SLA",\n                    "count": 2\n                },\n                {\n                    "type": "expense_approval",\n                    "severity": "medium",\n                    "message": "3 high-value expenses awaiting approval",\n                    "count": 3\n                }\n            ],\n            "critical_count": 0,\n            "high_count": 1,\n            "total_count": 2\n        },\n        "governance_summary": {\n            "open_motions": 2,\n            "upcoming_agm": {\n                "id": "uuid",\n                "title": "Annual General Meeting 2026",\n                "meeting_date": "2026-03-15"\n            }\n        },\n        "operational_kpis": {\n            "complaints": {\n                "new_this_month": 12,\n                "resolved_this_month": 10,\n                "open_count": 5,\n                "avg_resolution_hours": 28.5\n            },\n            "visitors": {\n                "today": 45,\n                "this_week": 312\n            }\n        }\n    }\n}`}</code></pre>
-        </div>
-
-        <h3 className="text-lg font-semibold mt-8 mb-2">Executive Dashboard Endpoints</h3>
-        <div className="overflow-x-auto mb-6">
-          <table className="min-w-full border text-sm">
-            <thead className="bg-blue-900 text-white">
-              <tr>
-                <th className="px-4 py-2">Endpoint</th>
-                <th className="px-4 py-2">Description</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr className="even:bg-blue-50">
-                <td className="px-4 py-2"><code>GET /executive/dashboard</code></td>
-                <td className="px-4 py-2">Complete executive dashboard</td>
-              </tr>
-              <tr className="even:bg-blue-50">
-                <td className="px-4 py-2"><code>GET /executive/financial-summary</code></td>
-                <td className="px-4 py-2">Financial KPIs only</td>
-              </tr>
-              <tr className="even:bg-blue-50">
-                <td className="px-4 py-2"><code>GET /executive/pending-approvals</code></td>
-                <td className="px-4 py-2">All pending approval items</td>
-              </tr>
-              <tr className="even:bg-blue-50">
-                <td className="px-4 py-2"><code>GET /executive/critical-alerts</code></td>
-                <td className="px-4 py-2">Critical alerts requiring attention</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+        <p className="mb-4">The President has access to a specialized executive dashboard with aggregated KPIs. Access it from <strong>Dashboard → Executive View</strong>. It includes:</p>
+        <ul className="list-disc ml-6 mb-8">
+          <li><strong>Financial Summary</strong> — Revenue, collections rate, outstanding dues, and net cashflow for the current month</li>
+          <li><strong>Pending Approvals</strong> — High-value expenses and other items awaiting approval</li>
+          <li><strong>Critical Alerts</strong> — SLA breaches, overdue complaints, and urgent items</li>
+          <li><strong>Governance Summary</strong> — Open motions and upcoming AGM details</li>
+          <li><strong>Operational KPIs</strong> — Complaint resolution stats and visitor counts</li>
+        </ul>
 
         <h2 className="text-xl font-bold mt-10 mb-3">Visitor Analytics Dashboard</h2>
-        <p>Security committee members can access visitor analytics:</p>
-        <div className="code-block mb-6">
-          <span className="code-label">HTTP</span>
-          <pre className="bg-gray-900 text-gray-100 rounded p-4 overflow-x-auto text-sm"><code>{`GET /api/v1/visitor-analytics/dashboard\nAuthorization: Bearer <token>`}</code></pre>
-        </div>
-        <p className="mb-2 font-semibold">Available Analytics:</p>
+        <p className="mb-4">Security committee members can access visitor analytics from <strong>Reports → Visitor Analytics</strong>. Available analytics include:</p>
         <ul className="list-disc ml-6 mb-8">
           <li>Daily visitor trends</li>
           <li>Peak hour analysis</li>
@@ -171,7 +97,7 @@ export default function Dashboards() {
         <h2 className="text-xl font-bold mt-10 mb-3">Navigation by Role</h2>
         <div className="overflow-x-auto mb-6">
           <table className="min-w-full border text-sm">
-            <thead className="bg-blue-900 text-white">
+            <thead className="bg-primary-900 text-white">
               <tr>
                 <th className="px-4 py-2">Role</th>
                 <th className="px-4 py-2">Primary Modules</th>
@@ -179,37 +105,37 @@ export default function Dashboards() {
               </tr>
             </thead>
             <tbody>
-              <tr className="even:bg-blue-50">
+              <tr className="even:bg-primary-50">
                 <td className="px-4 py-2 font-bold">President</td>
                 <td className="px-4 py-2">Executive Dashboard, All Modules</td>
                 <td className="px-4 py-2">Full Settings</td>
               </tr>
-              <tr className="even:bg-blue-50">
+              <tr className="even:bg-primary-50">
                 <td className="px-4 py-2 font-bold">Treasurer</td>
                 <td className="px-4 py-2">Finance, Collections, Budget</td>
                 <td className="px-4 py-2">Financial Settings</td>
               </tr>
-              <tr className="even:bg-blue-50">
+              <tr className="even:bg-primary-50">
                 <td className="px-4 py-2 font-bold">Secretary</td>
                 <td className="px-4 py-2">Helpdesk, AGM, Notices</td>
                 <td className="px-4 py-2">Admin Panel</td>
               </tr>
-              <tr className="even:bg-blue-50">
+              <tr className="even:bg-primary-50">
                 <td className="px-4 py-2 font-bold">Committee Member</td>
                 <td className="px-4 py-2">Reports, Complaints, Governance</td>
                 <td className="px-4 py-2">Limited</td>
               </tr>
-              <tr className="even:bg-blue-50">
+              <tr className="even:bg-primary-50">
                 <td className="px-4 py-2 font-bold">Owner</td>
                 <td className="px-4 py-2">Dues, Visitors, Governance</td>
                 <td className="px-4 py-2">None</td>
               </tr>
-              <tr className="even:bg-blue-50">
+              <tr className="even:bg-primary-50">
                 <td className="px-4 py-2 font-bold">Tenant</td>
                 <td className="px-4 py-2">Dues, Visitors, Complaints</td>
                 <td className="px-4 py-2">None</td>
               </tr>
-              <tr className="even:bg-blue-50">
+              <tr className="even:bg-primary-50">
                 <td className="px-4 py-2 font-bold">Guard</td>
                 <td className="px-4 py-2">Gate, Visitors, Entry Logs</td>
                 <td className="px-4 py-2">None</td>
@@ -218,10 +144,11 @@ export default function Dashboards() {
           </table>
         </div>
 
-        <h2 className="text-xl font-bold mt-10 mb-3">Widget Types</h2>
+        <h2 className="text-xl font-bold mt-10 mb-3">Dashboard Widgets</h2>
+        <p className="mb-4">Each role's dashboard shows a curated set of widgets relevant to their responsibilities:</p>
         <div className="overflow-x-auto mb-6">
           <table className="min-w-full border text-sm">
-            <thead className="bg-blue-900 text-white">
+            <thead className="bg-primary-900 text-white">
               <tr>
                 <th className="px-4 py-2">Widget</th>
                 <th className="px-4 py-2">Roles</th>
@@ -229,38 +156,38 @@ export default function Dashboards() {
               </tr>
             </thead>
             <tbody>
-              <tr className="even:bg-blue-50">
-                <td className="px-4 py-2"><code>financial_summary</code></td>
+              <tr className="even:bg-primary-50">
+                <td className="px-4 py-2">Financial Summary</td>
                 <td className="px-4 py-2">President, Treasurer</td>
                 <td className="px-4 py-2">Revenue, collections, cashflow</td>
               </tr>
-              <tr className="even:bg-blue-50">
-                <td className="px-4 py-2"><code>pending_approvals</code></td>
+              <tr className="even:bg-primary-50">
+                <td className="px-4 py-2">Pending Approvals</td>
                 <td className="px-4 py-2">President, Treasurer, Secretary</td>
                 <td className="px-4 py-2">Items awaiting approval</td>
               </tr>
-              <tr className="even:bg-blue-50">
-                <td className="px-4 py-2"><code>complaint_stats</code></td>
+              <tr className="even:bg-primary-50">
+                <td className="px-4 py-2">Complaint Stats</td>
                 <td className="px-4 py-2">Secretary, Committee</td>
                 <td className="px-4 py-2">Open/resolved complaints</td>
               </tr>
-              <tr className="even:bg-blue-50">
-                <td className="px-4 py-2"><code>visitor_stats</code></td>
+              <tr className="even:bg-primary-50">
+                <td className="px-4 py-2">Visitor Stats</td>
                 <td className="px-4 py-2">Committee, Guard</td>
                 <td className="px-4 py-2">Today's visitor count</td>
               </tr>
-              <tr className="even:bg-blue-50">
-                <td className="px-4 py-2"><code>my_dues</code></td>
+              <tr className="even:bg-primary-50">
+                <td className="px-4 py-2">My Dues</td>
                 <td className="px-4 py-2">Owner, Tenant</td>
                 <td className="px-4 py-2">Outstanding payments</td>
               </tr>
-              <tr className="even:bg-blue-50">
-                <td className="px-4 py-2"><code>upcoming_visitors</code></td>
+              <tr className="even:bg-primary-50">
+                <td className="px-4 py-2">Upcoming Visitors</td>
                 <td className="px-4 py-2">Owner, Tenant</td>
                 <td className="px-4 py-2">Expected visitors today</td>
               </tr>
-              <tr className="even:bg-blue-50">
-                <td className="px-4 py-2"><code>gate_activity</code></td>
+              <tr className="even:bg-primary-50">
+                <td className="px-4 py-2">Gate Activity</td>
                 <td className="px-4 py-2">Guard</td>
                 <td className="px-4 py-2">Recent entry/exit logs</td>
               </tr>
@@ -269,8 +196,8 @@ export default function Dashboards() {
         </div>
 
         <div className="flex justify-between mt-12 gap-4">
-          <Link href="/10-helpdesk-sla" className="bg-white border rounded px-4 py-2 hover:bg-blue-50 transition">← Helpdesk & SLA</Link>
-          <Link href="/6-troubleshooting" className="bg-white border rounded px-4 py-2 hover:bg-blue-50 transition">Troubleshooting →</Link>
+          <Link href="/10-helpdesk-sla" className="bg-white border rounded px-4 py-2 hover:bg-primary-50 transition">← Helpdesk & SLA</Link>
+          <Link href="/7-faq" className="bg-white border rounded px-4 py-2 hover:bg-primary-50 transition">FAQ →</Link>
         </div>
       </main>
     </DocsLayout>

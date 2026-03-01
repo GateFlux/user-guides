@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import DocsLayout from '../DocsLayout';
 
 export default function DeploymentGuide() {
@@ -6,12 +5,12 @@ export default function DeploymentGuide() {
     <DocsLayout>
       <main className="prose mx-auto py-8">
         <nav className="mb-4 text-sm text-gray-500 flex items-center gap-2">
-          <a href="/" className="text-blue-600 hover:underline">Docs</a>
+          <a href="/" className="text-primary-600 hover:underline">Docs</a>
           <span>›</span>
           <span>Deployment Guide</span>
         </nav>
 
-        <div className="bg-blue-50 border border-blue-200 rounded p-6 mb-6">
+        <div className="bg-primary-50 border border-primary-200 rounded p-6 mb-6">
           <h1 className="text-2xl font-bold mb-2">GateFlux Deployment & Configuration Guide</h1>
           <p>Complete guide for domain configuration, Hostinger deployment, and APK building.</p>
         </div>
@@ -19,32 +18,32 @@ export default function DeploymentGuide() {
         <div className="bg-white border rounded p-6 mb-8">
           <h2 className="text-xl font-bold mb-2">Table of Contents</h2>
           <ol className="list-decimal pl-6">
-            <li><a href="#domain-config" className="text-blue-600 hover:underline">Domain Configuration</a>
+            <li><a href="#domain-config" className="text-primary-600 hover:underline">Domain Configuration</a>
               <ul className="list-disc pl-6">
-                <li><a href="#api-laravel" className="text-blue-600 hover:underline">API (Laravel)</a></li>
-                <li><a href="#web-react" className="text-blue-600 hover:underline">Web (React/Vite)</a></li>
-                <li><a href="#mobile-apps" className="text-blue-600 hover:underline">Mobile Apps</a></li>
+                <li><a href="#api-laravel" className="text-primary-600 hover:underline">API (Laravel)</a></li>
+                <li><a href="#web-react" className="text-primary-600 hover:underline">Web (React/Vite)</a></li>
+                <li><a href="#mobile-apps" className="text-primary-600 hover:underline">Mobile Apps</a></li>
               </ul>
             </li>
-            <li><a href="#hostinger" className="text-blue-600 hover:underline">Hostinger Shared Cloud Hosting Deployment</a>
+            <li><a href="#hostinger" className="text-primary-600 hover:underline">Hostinger Shared Cloud Hosting Deployment</a>
               <ul className="list-disc pl-6">
-                <li><a href="#prerequisites" className="text-blue-600 hover:underline">Prerequisites</a></li>
-                <li><a href="#api-deploy" className="text-blue-600 hover:underline">API Deployment</a></li>
-                <li><a href="#web-deploy" className="text-blue-600 hover:underline">Web Deployment</a></li>
-                <li><a href="#database" className="text-blue-600 hover:underline">Database Setup</a></li>
+                <li><a href="#prerequisites" className="text-primary-600 hover:underline">Prerequisites</a></li>
+                <li><a href="#api-deploy" className="text-primary-600 hover:underline">API Deployment</a></li>
+                <li><a href="#web-deploy" className="text-primary-600 hover:underline">Web Deployment</a></li>
+                <li><a href="#database" className="text-primary-600 hover:underline">Database Setup</a></li>
               </ul>
             </li>
-            <li><a href="#mobile-apk" className="text-blue-600 hover:underline">Building Mobile APKs</a>
+            <li><a href="#mobile-apk" className="text-primary-600 hover:underline">Building Mobile APKs</a>
               <ul className="list-disc pl-6">
-                <li><a href="#apk-prereq" className="text-blue-600 hover:underline">Prerequisites</a></li>
-                <li><a href="#resident-apk" className="text-blue-600 hover:underline">Resident App APK</a></li>
-                <li><a href="#security-apk" className="text-blue-600 hover:underline">Security App APK</a></li>
-                <li><a href="#signed-apk" className="text-blue-600 hover:underline">Signed Release APK</a></li>
+                <li><a href="#apk-prereq" className="text-primary-600 hover:underline">Prerequisites</a></li>
+                <li><a href="#resident-apk" className="text-primary-600 hover:underline">Resident App APK</a></li>
+                <li><a href="#security-apk" className="text-primary-600 hover:underline">Security App APK</a></li>
+                <li><a href="#signed-apk" className="text-primary-600 hover:underline">Signed Release APK</a></li>
               </ul>
             </li>
-            <li><a href="#ssl" className="text-blue-600 hover:underline">SSL Configuration</a></li>
-            <li><a href="#env-ref" className="text-blue-600 hover:underline">Environment Variables Reference</a></li>
-            <li><a href="#troubleshooting" className="text-blue-600 hover:underline">Troubleshooting</a></li>
+            <li><a href="#ssl" className="text-primary-600 hover:underline">SSL Configuration</a></li>
+            <li><a href="#env-ref" className="text-primary-600 hover:underline">Environment Variables Reference</a></li>
+            <li><a href="#troubleshooting" className="text-primary-600 hover:underline">Troubleshooting</a></li>
           </ol>
         </div>
 
@@ -171,8 +170,8 @@ export default function DeploymentGuide() {
           <p>For Play Store distribution, you need a signed APK.</p>
           <h4 className="font-semibold mb-2">Step 1: Generate Keystore</h4>
           <pre className="overflow-x-auto"><code>{`keytool -genkeypair -v -storetype PKCS12 -keystore gateflux-release.keystore -alias gateflux-key -keyalg RSA -keysize 2048 -validity 10000`}</code></pre>
-          <div className="bg-yellow-50 border-l-4 border-yellow-400 rounded p-4 mb-4">
-            <strong className="text-yellow-700">⚠️ Important:</strong> Store the keystore file securely! You cannot recover it if lost.
+          <div className="bg-accent-50 border-l-4 border-accent-400 rounded p-4 mb-4">
+            <strong className="text-accent-700">⚠️ Important:</strong> Store the keystore file securely! You cannot recover it if lost.
           </div>
           <h4 className="font-semibold mb-2">Step 2: Configure Signing</h4>
           <div className="bg-gray-50 border rounded p-4 mb-4">
