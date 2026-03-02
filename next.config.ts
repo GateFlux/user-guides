@@ -6,6 +6,7 @@ const nextConfig: NextConfig = {
   distDir: 'build',
   reactCompiler: true,
   output: 'export', // Enable static export
+  trailingSlash: true,
 };
 
 export default nextConfig;
