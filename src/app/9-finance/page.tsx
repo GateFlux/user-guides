@@ -84,6 +84,52 @@ export default function Finance() {
         <h3 className="text-lg font-semibold mt-6 mb-2">Example</h3>
         <p className="mb-6">Create a monthly maintenance invoice with two line items, set month-end due date, then send reminder to invoices still pending after due date.</p>
 
+        <h2 className="text-xl font-bold mt-8 mb-3">Subscription Billing (GateFlux Plan)</h2>
+
+        <h3 className="text-lg font-semibold mt-6 mb-2">Overview</h3>
+        <p className="mb-4">
+          In addition to society maintenance invoices, GateFlux now includes subscription billing controls under
+          <strong> Settings → Billing</strong>. Admins can review current plan, usage, subscription invoices,
+          subscription transactions, payment methods, analytics, and webhook events.
+        </p>
+
+        <h3 className="text-lg font-semibold mt-6 mb-2">Plan Change Workflow</h3>
+        <ol className="list-decimal ml-6 mb-6">
+          <li>Open <strong>Settings → Billing → Subscription</strong>.</li>
+          <li>Review the current plan card and usage metrics.</li>
+          <li>Choose an <strong>Upgrade</strong> or <strong>Downgrade</strong> action from the plan list.</li>
+          <li>Check the confirmation dialog details (proration for upgrades, next-cycle effective date for downgrades).</li>
+          <li>If your society is in trial and trial end is near, choose the next billing cycle in the dialog: <strong>Monthly</strong> or <strong>Yearly (15% discount)</strong>.</li>
+          <li>Confirm the action and note the returned gateway reference (for upgrades).</li>
+        </ol>
+
+        <h3 className="text-lg font-semibold mt-6 mb-2">Trial-End Billing Cycle Choice</h3>
+        <p className="mb-4">
+          When a trial is about to end, the plan-change confirmation dialog includes a billing cycle selector.
+          This keeps the same upgrade/downgrade flow, but lets admins decide whether to continue on monthly or yearly billing.
+        </p>
+        <ul className="list-disc ml-6 mb-6">
+          <li><strong>Monthly:</strong> Standard cycle pricing applies.</li>
+          <li><strong>Yearly:</strong> 15% discount is applied to yearly billing.</li>
+          <li>The selected cycle is sent with the same existing upgrade/downgrade request.</li>
+        </ul>
+
+        <h3 className="text-lg font-semibold mt-6 mb-2">Webhook Monitoring and Retry</h3>
+        <ol className="list-decimal ml-6 mb-6">
+          <li>Open <strong>Settings → Billing → Webhook Events</strong>.</li>
+          <li>Filter by provider, status, or event type to find failed events quickly.</li>
+          <li>Use <strong>Retry</strong> for eligible events that are not in processed state.</li>
+          <li>Track retry attempts and next retry schedule in the events table.</li>
+        </ol>
+
+        <h3 className="text-lg font-semibold mt-6 mb-2">Operational Notes</h3>
+        <ul className="list-disc ml-6 mb-6">
+          <li>Upgrades are immediate and may generate prorated charges.</li>
+          <li>Downgrades are scheduled to apply at the next billing cycle.</li>
+          <li>When yearly is selected at trial end, yearly billing includes a 15% discount.</li>
+          <li>Use subscription transactions and payment history tabs for reconciliation.</li>
+        </ul>
+
         <h3 className="text-lg font-semibold mt-6 mb-2">Tips</h3>
         <ul className="list-disc ml-6 mb-6">
           <li>Use clear line item names (for example: Maintenance Apr 2026).</li>
