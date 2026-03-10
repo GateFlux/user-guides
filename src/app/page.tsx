@@ -70,6 +70,7 @@ export default function Home() {
 
       <div className="mb-2">
         <Link href="/1-getting-started" className="inline-block bg-primary-50 border border-primary-200 rounded-lg px-4 py-2 text-sm font-semibold text-primary-900 hover:bg-primary-100 transition mb-6">Quick Start Guide →</Link>
+        <Link href="/4-society-signup" className="ml-0 md:ml-3 inline-block bg-white border border-primary-200 rounded-lg px-4 py-2 text-sm font-semibold text-primary-900 hover:bg-primary-50 transition mb-6">Society Signup Guide →</Link>
       </div>
 
       {guideGroups.map(({ label, color, headerColor, items }) => (

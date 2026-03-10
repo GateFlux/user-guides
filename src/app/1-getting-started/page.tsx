@@ -233,11 +233,16 @@ export default function GettingStarted() {
         </div>
 
         <h2 id="admin-start">For Admins</h2>
-        <p>Society admins manage residents, staff, settings, and all society operations through the GateFlux <strong>web portal</strong> or mobile app. Admin access is set up by GateFlux during society onboarding.</p>
+        <p>Society admins manage residents, staff, settings, and all society operations through the GateFlux <strong>web portal</strong> or mobile app.</p>
+
+        <div className="bg-primary-50 border border-primary-200 rounded p-4 mb-6">
+          <strong>Creating a new society?</strong> Start from <strong>marketing signup</strong> at <code>https://gateflux.co/signup</code>.
+          Complete email and mobile OTP verification, then you will be redirected to <code>https://app.gateflux.co/{'{society_slug}'}/setup</code>.
+        </div>
 
         <h3>Step 1: Access the Admin Panel</h3>
         <ol className="steps list-decimal pl-6 mb-6">
-          <li>Open your browser and go to your society's GateFlux URL (e.g., <code>yoursoceity.gateflux.co</code>)</li>
+          <li>Open your browser and go to your app URL (e.g., <code>https://app.gateflux.co/green-valley/auth/login</code>).</li>
           <li>Log in with your email and password</li>
           <li>You'll land on the <strong>Admin Dashboard</strong> — your central control panel</li>
         </ol>

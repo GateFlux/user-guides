@@ -7,6 +7,7 @@ const navGroups = [
     label: 'General',
     items: [
       { href: '/1-getting-started', label: 'Getting Started' },
+      { href: '/4-society-signup', label: 'Society Signup & Verification' },
       { href: '/7-faq', label: 'FAQ' },
     ],
   },
