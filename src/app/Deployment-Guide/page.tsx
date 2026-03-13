@@ -55,7 +55,7 @@ export default function DeploymentGuide() {
           <h3 id="api-laravel" className="text-lg font-semibold mt-8 mb-2">1.1 API (Laravel)</h3>
           <div className="bg-gray-50 border rounded p-4 mb-4">
             <h4 className="font-semibold mb-2"><span className="bg-orange-100 text-orange-800 px-2 py-1 rounded mr-2 text-xs">api/.env</span>Update these environment variables:</h4>
-            <pre className="overflow-x-auto"><code>{`# Application URL\nAPP_URL=https://api.yourdomain.com\n\n# Tenancy Configuration\nTENANCY_BASE_DOMAIN=yourdomain.com\nTENANCY_HEADER=X-Tenant\nTENANCY_ALLOW_HEADER=true\n\n# Session Domain (if using cookies)\nSESSION_DOMAIN=.yourdomain.com`}</code></pre>
+            <pre className="overflow-x-auto"><code>{`# Application URL\nAPP_URL=https://api.yourdomain.com\n\n# Tenancy Configuration\nTENANCY_BASE_DOMAIN=yourdomain.com\nTENANCY_HEADER=X-Tenant-ID\nTENANCY_ALLOW_HEADER=true\n\n# Session Domain (if using cookies)\nSESSION_DOMAIN=.yourdomain.com`}</code></pre>
           </div>
           <div className="bg-gray-50 border rounded p-4 mb-4">
             <h4 className="font-semibold mb-2"><span className="bg-orange-100 text-orange-800 px-2 py-1 rounded mr-2 text-xs">api/config/cors.php</span>Update allowed origins:</h4>
@@ -68,7 +68,7 @@ export default function DeploymentGuide() {
           <h3 id="web-react" className="text-lg font-semibold mt-8 mb-2">1.2 Web (React/Vite)</h3>
           <div className="bg-gray-50 border rounded p-4 mb-4">
             <h4 className="font-semibold mb-2"><span className="bg-orange-100 text-orange-800 px-2 py-1 rounded mr-2 text-xs">web/.env.production</span></h4>
-            <pre className="overflow-x-auto"><code>{`VITE_API_BASE_URL=https://api.yourdomain.com/api/v1\nVITE_TENANCY_HEADER=X-Tenant\nVITE_TENANCY_VALUE=`}</code></pre>
+            <pre className="overflow-x-auto"><code>{`VITE_API_BASE_URL=https://api.yourdomain.com/api/v1\nVITE_TENANCY_HEADER=X-Tenant-ID\nVITE_TENANCY_VALUE=`}</code></pre>
           </div>
           <h3 id="mobile-apps" className="text-lg font-semibold mt-8 mb-2">1.3 Mobile Apps</h3>
           <div className="bg-gray-50 border rounded p-4 mb-4">
@@ -104,7 +104,7 @@ export default function DeploymentGuide() {
           <pre className="overflow-x-auto"><code>{`# SSH into server\ncd public_html/api\n\n# Copy environment file\ncp .env.example .env\n\n# Edit environment file\nnano .env`}</code></pre>
           <div className="bg-gray-50 border rounded p-4 mb-4">
             <h4 className="font-semibold mb-2">Production .env Settings</h4>
-            <pre className="overflow-x-auto"><code>{`APP_NAME=GateFlux\nAPP_ENV=production\nAPP_KEY=base64:YOUR_APP_KEY_HERE\nAPP_DEBUG=false\nAPP_URL=https://api.yourdomain.com\n\nDB_CONNECTION=mysql\nDB_HOST=localhost\nDB_PORT=3306\nDB_DATABASE=your_database_name\nDB_USERNAME=your_database_user\nDB_PASSWORD=your_database_password\n\nTENANCY_BASE_DOMAIN=yourdomain.com\nTENANCY_HEADER=X-Tenant\nTENANCY_ALLOW_HEADER=true\n\nCACHE_DRIVER=file\nQUEUE_CONNECTION=database\nSESSION_DRIVER=database\n\nMAIL_MAILER=smtp\nMAIL_HOST=smtp.hostinger.com\nMAIL_PORT=465\nMAIL_USERNAME=your_email@yourdomain.com\nMAIL_PASSWORD=your_email_password\nMAIL_ENCRYPTION=ssl\nMAIL_FROM_ADDRESS=noreply@yourdomain.com\nMAIL_FROM_NAME="GateFlux"`}</code></pre>
+            <pre className="overflow-x-auto"><code>{`APP_NAME=GateFlux\nAPP_ENV=production\nAPP_KEY=base64:YOUR_APP_KEY_HERE\nAPP_DEBUG=false\nAPP_URL=https://api.yourdomain.com\n\nDB_CONNECTION=mysql\nDB_HOST=localhost\nDB_PORT=3306\nDB_DATABASE=your_database_name\nDB_USERNAME=your_database_user\nDB_PASSWORD=your_database_password\n\nTENANCY_BASE_DOMAIN=yourdomain.com\nTENANCY_HEADER=X-Tenant-ID\nTENANCY_ALLOW_HEADER=true\n\nCACHE_DRIVER=file\nQUEUE_CONNECTION=database\nSESSION_DRIVER=database\n\nMAIL_MAILER=smtp\nMAIL_HOST=smtp.hostinger.com\nMAIL_PORT=465\nMAIL_USERNAME=your_email@yourdomain.com\nMAIL_PASSWORD=your_email_password\nMAIL_ENCRYPTION=ssl\nMAIL_FROM_ADDRESS=noreply@yourdomain.com\nMAIL_FROM_NAME="GateFlux"`}</code></pre>
           </div>
           <h4 className="font-semibold mb-2">Step 4: Install Dependencies &amp; Setup</h4>
           <pre className="overflow-x-auto"><code>{`# Install PHP dependencies\ncomposer install --optimize-autoloader --no-dev\n\n# Generate application key (if not set)\nphp artisan key:generate\n\n# Run migrations\nphp artisan migrate --force\n\n# Seed database (if needed)\nphp artisan db:seed --force\n\n# Optimize for production\nphp artisan config:cache\nphp artisan route:cache\nphp artisan view:cache\n\n# Set permissions\nchmod -R 775 storage bootstrap/cache`}</code></pre>
@@ -300,10 +300,11 @@ export default function DeploymentGuide() {
               <tr>
                 <td><code>VITE_TENANCY_HEADER</code></td>
                 <td>Tenant header name</td>
-                <td><code>X-Tenant</code></td>
+                    <td><code>X-Tenant-ID</code></td>
               </tr>
             </tbody>
           </table>
+                  <p className="text-xs text-gray-600">Backward compatibility: API still accepts <code>X-Tenant</code>, but <code>X-Tenant-ID</code> is now the default and recommended header.</p>
           <h3 className="text-lg font-semibold mt-8 mb-2">Mobile (client.js)</h3>
           <table className="w-full text-xs border rounded mb-6">
             <thead className="bg-gray-100">

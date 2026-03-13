@@ -242,8 +242,9 @@ export default function GettingStarted() {
 
         <h3>Step 1: Access the Admin Panel</h3>
         <ol className="steps list-decimal pl-6 mb-6">
-          <li>Open your browser and go to your app URL (e.g., <code>https://app.gateflux.co/green-valley/auth/login</code>).</li>
+          <li>Open your browser and go to your app URL (e.g., <code>https://app.gateflux.co/login</code>).</li>
           <li>Log in with your email and password</li>
+          <li>If your account belongs to multiple societies, select the society workspace you want to manage.</li>
           <li>You'll land on the <strong>Admin Dashboard</strong> — your central control panel</li>
         </ol>
 
