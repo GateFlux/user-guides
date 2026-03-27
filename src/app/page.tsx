@@ -33,6 +33,11 @@ const guideGroups = [
       { href: '/10-helpdesk-sla', label: 'Helpdesk & SLA', desc: 'SLA configuration and escalation rules' },
       { href: '/11-dashboards', label: 'Role-Based Dashboards', desc: 'Dynamic navigation and dashboard widgets' },
       { href: '/15-staff-vendors', label: 'Staff & Vendors', desc: 'Staff management, vendors, and work orders' },
+      { href: '/16-platform-console', label: 'Platform Console', desc: 'Tenant lifecycle, plans, inboxes, and provider health' },
+      { href: '/17-auth-identity-security', label: 'Auth & Security', desc: 'Authentication, 2FA, RBAC, and session security' },
+      { href: '/18-hardware-access', label: 'Hardware Access', desc: 'RFID and boom barrier LPR operational flows' },
+      { href: '/19-enterprise-features', label: 'Enterprise Features', desc: 'SSO, white-label, integrations, and multi-property' },
+      { href: '/20-society-settings-workspace', label: 'Settings Workspace', desc: 'Billing, documents, notifications, and preferences' },
     ],
   },
 ];
@@ -42,7 +47,8 @@ export default function Home() {
     <main className="min-h-screen bg-gray-50 py-8 px-2 md:px-8">
       <section className="bg-gradient-to-br from-primary-900 via-primary-900 to-accent-500 text-white rounded-2xl p-10 pb-16 mb-10 text-center relative overflow-hidden border-b-4 border-accent-400">
         <h1 className="text-4xl md:text-5xl font-bold mb-4">GateFlux Help Center</h1>
-        <p className="text-lg md:text-xl opacity-90 max-w-2xl mx-auto mb-8">Find guides and answers for using GateFlux to manage visitors, security, and society operations.</p>
+        <p className="text-lg md:text-xl opacity-90 max-w-2xl mx-auto mb-4">Find guides and answers for using GateFlux to manage security, finance, governance, and society operations.</p>
+        <p className="text-sm md:text-base opacity-80 max-w-2xl mx-auto mb-8">Current implementation baseline: 57 modules across 15 categories spanning web, connected APIs, mobile apps, and hardware integrations.</p>
         <div className="flex flex-col md:flex-row gap-4 justify-center">
           <Link href="/1-getting-started" className="bg-white text-primary-900 font-semibold rounded px-6 py-3 shadow hover:bg-primary-50 transition">Get Started</Link>
           <Link href="/7-faq" className="bg-white/10 text-white border border-white/30 font-semibold rounded px-6 py-3 hover:bg-white/20 transition">Browse FAQ</Link>
@@ -124,7 +130,7 @@ export default function Home() {
       {/* For Developers section hidden as requested */}
 
       <footer className="text-center text-gray-400 mt-12 pt-8 border-t">
-        <p className="font-bold">GateFlux Help Center | Last updated: February 2026</p>
+        <p className="font-bold">GateFlux Help Center | Last updated: March 2026</p>
         <p>Need help? Contact your society admin or email <a href="mailto:support@gateflux.co" className="underline">support@gateflux.co</a></p>
       </footer>
     </main>
