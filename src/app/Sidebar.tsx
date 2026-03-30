@@ -37,6 +37,11 @@ const navGroups = [
       { href: '/10-helpdesk-sla', label: 'Helpdesk & SLA' },
       { href: '/11-dashboards', label: 'Role-Based Dashboards' },
       { href: '/15-staff-vendors', label: 'Staff & Vendors' },
+      { href: '/16-platform-console', label: 'Platform Console' },
+      { href: '/17-auth-identity-security', label: 'Auth & Security' },
+      { href: '/18-hardware-access', label: 'Hardware Access' },
+      { href: '/19-enterprise-features', label: 'Enterprise Features' },
+      { href: '/20-society-settings-workspace', label: 'Settings Workspace' },
     ],
   },
 ];

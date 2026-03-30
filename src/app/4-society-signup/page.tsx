@@ -18,9 +18,10 @@ export default function SocietySignupGuidePage() {
         <h2>Signup Entry Point</h2>
         <ul>
           <li><strong>Marketing site only:</strong> <code>https://gateflux.co/signup</code></li>
-          <li><strong>Application login:</strong> <code>https://app.gateflux.co/auth/login</code></li>
+          <li><strong>Application login:</strong> <code>https://app.gateflux.co/login</code></li>
         </ul>
         <p>Society registration is not available inside the app login screen. New societies must sign up from the marketing website.</p>
+        <p>Users with access to multiple societies can sign in once and then select the active society workspace.</p>
 
         <h2>Plan Selection Behavior</h2>
         <h3>Scenario A: Coming from Pricing</h3>

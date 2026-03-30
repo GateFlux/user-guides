@@ -242,8 +242,9 @@ export default function GettingStarted() {
 
         <h3>Step 1: Access the Admin Panel</h3>
         <ol className="steps list-decimal pl-6 mb-6">
-          <li>Open your browser and go to your app URL (e.g., <code>https://app.gateflux.co/green-valley/auth/login</code>).</li>
+          <li>Open your browser and go to your app URL (e.g., <code>https://app.gateflux.co/login</code>).</li>
           <li>Log in with your email and password</li>
+          <li>If your account belongs to multiple societies, select the society workspace you want to manage.</li>
           <li>You'll land on the <strong>Admin Dashboard</strong> — your central control panel</li>
         </ol>
 
@@ -268,12 +269,14 @@ export default function GettingStarted() {
         <h3>Step 3: Key Admin Modules</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-6 not-prose">
           {[
-            { title: 'Residents', desc: 'Add and manage all flat owners and tenants' },
-            { title: 'Finance', desc: 'Generate invoices, approve expenses, track collections' },
-            { title: 'Visitors', desc: 'View society-wide entry/exit logs and analytics' },
-            { title: 'Complaints', desc: 'Manage and resolve resident complaints and maintenance' },
-            { title: 'Staff', desc: 'Manage guards, vendors, and support staff' },
-            { title: 'Notices', desc: 'Publish announcements to all residents' },
+            { title: 'Resident Management', desc: 'Manage unit members, invitations, onboarding, and profile lifecycle' },
+            { title: 'Security & Access', desc: 'Control visitor lifecycle, recurring access, vehicle checks, and blacklist workflows' },
+            { title: 'Service Requests & Work Orders', desc: 'Handle complaints, assignments, SLAs, escalations, and work order operations' },
+            { title: 'Finance & Billing', desc: 'Run invoices, payments, expenses, accounting, and billing configuration' },
+            { title: 'Community & Communication', desc: 'Publish notices, run polls, manage events, and broadcast emergencies' },
+            { title: 'Governance & Committee', desc: 'Manage committees, meetings, elections, and document repository access' },
+            { title: 'Staff, Vendors & Payroll', desc: 'Operate staff attendance, payroll, vendor contracts, passes, and performance' },
+            { title: 'Society Settings Workspace', desc: 'Configure profile, billing, documents, notifications, and user preferences' },
           ].map(({ title, desc }) => (
             <div key={title} className="bg-white border rounded-lg p-3 shadow-sm">
               <div className="font-semibold text-primary-900 text-sm mb-0.5">{title}</div>
